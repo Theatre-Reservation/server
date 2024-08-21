@@ -9,13 +9,28 @@ export class Movie extends Document {
   title: string;
 
   @Prop({ required: true })
-  genre: string;
+  language: string;
 
-  @Prop()
+  @Prop({ required: true })
   description: string;
 
-  @Prop()
-  image: string;
+  @Prop({ required: true })
+  main_genre: string;
+
+  @Prop({ type: [String], required: true })
+  sub_genres: string[];
+
+  @Prop({ required: true })
+  poster_path: string;
+
+  @Prop({ required: true })
+  cover_path: string;
+
+  @Prop({ required: true })
+  released_date: Date;
+
+  @Prop({ required: true })
+  runtime: string;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);

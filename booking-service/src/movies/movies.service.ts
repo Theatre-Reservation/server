@@ -13,7 +13,7 @@ export class MoviesService {
     return this.movieModel.find().exec();
   }
 
-  async getMoviesByGenre(genre: string): Promise<Movie[]> {
-    return this.movieModel.find({ genre }).exec();
+  async getMoviesByMainGenre(main_genre: string): Promise<Movie[]> {
+    return this.movieModel.find({ main_genre }).exec();
   }
 }
