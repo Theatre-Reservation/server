@@ -1,32 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Show, ShowDocument } from '../db/show.model';
 import { Model } from 'mongoose';
+import { CreateShowDto } from './dto/show.dto';
+import { Show, ShowDocument } from '../db/show.model';
 
 @Injectable()
 export class ShowService {
-    constructor(
-        @InjectModel(Show.name) private readonly showModel:Model<ShowDocument>
-    ) {}
+    constructor(@InjectModel(Show.name) private showModel: Model<ShowDocument>) {}
 
-    async all(){
-        return await this.showModel.find().exec();
+    async createShow(createShowDto: CreateShowDto): Promise<Show> {
+        const createdShow = new this.showModel(createShowDto);
+        return createdShow.save();
     }
 
-    async create(data:Show){
-        const show = new this.showModel(data);
-        return await show.save();
+    async getAllShows(): Promise<Show[]> {
+        return this.showModel.find().exec();
     }
 
-    async get(id:string){
-        return await this.showModel.findById(id).exec();
+    async getShowById(id: string): Promise<Show> {
+        const show = await this.showModel.findById(id).exec();
+        if (!show) {
+            throw new NotFoundException(`Show with ID ${id} not found`);
+        }
+        return show;
     }
 
-    async update(id:string, data:Show){
-        return await this.showModel.findByIdAndUpdate(id, data, {new:true}).exec();
-    }   
+    async updateShow(id: string, createShowDto: CreateShowDto): Promise<Show> {
+        const updatedShow = await this.showModel.findByIdAndUpdate(id, createShowDto, {
+            new: true,
+        }).exec();
+        if (!updatedShow) {
+            throw new NotFoundException(`Show with ID ${id} not found`);
+        }
+        return updatedShow;
+    }
 
-    async delete(id:string){
-        return await this.showModel.findByIdAndDelete(id).exec();
+    async deleteShow(id: string): Promise<Show> {
+        const deletedShow = await this.showModel.findByIdAndDelete(id).exec();
+        if (!deletedShow) {
+            throw new NotFoundException(`Show with ID ${id} not found`);
+        }
+        return deletedShow;
     }
 }
