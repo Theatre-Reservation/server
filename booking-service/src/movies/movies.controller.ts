@@ -17,4 +17,9 @@ export class MoviesController {
   async getMoviesByMainGenre(@Param('main_genre') main_genre: string): Promise<Movie[]> {
     return this.moviesService.getMoviesByMainGenre(main_genre);
   }
+
+  @Get('limited/5-different-genres')
+  async getFiveMoviesFromDifferentGenres(): Promise<Movie[]> {
+    return this.moviesService.getFiveMoviesFromDifferentGenres();
+  }
 }
