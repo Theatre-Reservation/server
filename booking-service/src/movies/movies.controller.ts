@@ -22,4 +22,9 @@ export class MoviesController {
   async getFiveMoviesFromDifferentGenres(): Promise<Movie[]> {
     return this.moviesService.getFiveMoviesFromDifferentGenres();
   }
+
+  @Get('single/:id')
+  async getMovieById(@Param('id') id: string): Promise<Movie> {
+    return this.moviesService.getMovieById(id);
+  }
 }

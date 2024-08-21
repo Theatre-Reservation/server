@@ -45,4 +45,8 @@ export class MoviesService {
 
     return movies;
   }
+
+  async getMovieById(id: string): Promise<Movie> {
+    return this.movieModel.findById(id).exec();
+  }
 }
