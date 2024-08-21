@@ -3,12 +3,26 @@ api/v1/users - POST (user logging)
 
 
 
-
-
-
-
-
-
 Booking
 api/v1/movies - GET
 api/v1/
+
+
+
+Admin
+    Reservation
+        api/v1/reservations - GET
+        api/v1/reservations/:id - GET
+        api/v1/reservations - POST
+        api/v1/reservations/:id - PUT
+        api/v1/reservations/:id - DELETE
+
+    shows
+        api/v1/shows - GET
+        api/v1/shows/:id - GET
+        api/v1/shows - POST
+        api/v1/shows/:id - PUT
+        api/v1/shows/:id - DELETE
+    
+    
+
