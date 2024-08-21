@@ -3,11 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { MoviesModule } from './movies/movies.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [MongooseModule.forRoot('mongodb+srv://sanjana:V79JbHLxydlGsDoo@admin.pbcjo.mongodb.net/',{
     autoCreate: true
-    }),MoviesModule],
+    }),MoviesModule, EventsModule],
   controllers: [AppController],
   providers: [AppService],
 })
