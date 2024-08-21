@@ -1,14 +1,15 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+
 import { Document } from "mongoose";
 
 export type UserAuthDocument = UserAuth & Document;
 
-@Schema()
+@Schema( {})
 export class UserAuth{
 
-    @Prop()
+    @Prop() 
     Name: string;
-    @Prop()
+    @Prop({unique: [true, 'Duplicate email entered']}) 
     Email: string;
     @Prop()
     Password: string;
