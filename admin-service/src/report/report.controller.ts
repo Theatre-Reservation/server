@@ -42,6 +42,7 @@ export class ReportController {
             start: this.parseDate(start),
             end: this.parseDate(end)
         };
+        // console.log(start, end);
         return this.reportService.generateRevenueReport(timePeriod);
     }
 
@@ -56,25 +57,25 @@ export class ReportController {
     }
 
     // Endpoint to generate a report based on the report type
-    @Post('generate')
-    async generateReport(@Body() generateReportDto: GenerateReportDto) {
-        const { report_type, start, end } = generateReportDto;
+    // @Post('generate')
+    // async generateReport(@Body() generateReportDto: GenerateReportDto) {
+    //     const { report_type, start, end } = generateReportDto;
 
-        const timePeriod = {
-            start: this.parseDate(start),
-            end: this.parseDate(end),
-        };
+    //     const timePeriod = {
+    //         start: this.parseDate(start),
+    //         end: this.parseDate(end),
+    //     };
 
-        // Call the appropriate service method based on report type
-        switch (report_type) {
-            case 'sales':
-                return this.reportService.generateSalesReport(timePeriod);
-            case 'revenue':
-                return this.reportService.generateRevenueReport(timePeriod);
-            case 'popular-shows':
-                return this.reportService.generatePopularShowsReport(timePeriod);
-            default:
-                throw new BadRequestException('Invalid report type');
-        }
-    }
+    //     // Call the appropriate service method based on report type
+    //     switch (report_type) {
+    //         case 'sales':
+    //             return this.reportService.generateSalesReport(timePeriod);
+    //         case 'revenue':
+    //             return this.reportService.generateRevenueReport(timePeriod);
+    //         case 'popular-shows':
+    //             return this.reportService.generatePopularShowsReport(timePeriod);
+    //         default:
+    //             throw new BadRequestException('Invalid report type');
+    //     }
+    // }
 }

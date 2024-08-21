@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Report, ReportDocument } from './report.model';
+import { Report, ReportDocument } from '../db/report.model';
 import { Model } from 'mongoose';
-import { ReservationDocument } from './reservation.model'; // Assuming you have this model defined
-import { PaymentDocument } from './payment.model'; // Assuming you have this model defined
+import { ReservationDocument } from '../db/reservation.model'; // Assuming you have this model defined
+import { PaymentDocument } from '../db/payment.model'; // Assuming you have this model defined
 
 @Injectable()
 export class ReportService {

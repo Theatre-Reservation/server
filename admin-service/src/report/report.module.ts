@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { ReportService } from './report.service';
 import { ReportController } from './report.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Report, ReportSchema } from './report.model';
-import { ReservationSchema } from './reservation.model';
-import { PaymentSchema } from './payment.model';
+import { Report, ReportSchema } from '../db/report.model';
+import { ReservationSchema } from '../db/reservation.model';
+import { PaymentSchema } from '../db/payment.model';
 
 @Module({
     imports: [
