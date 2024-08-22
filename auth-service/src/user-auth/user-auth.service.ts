@@ -22,12 +22,20 @@ export class UserAuthService {
     async create(data:UserAuth){
         const show = new this.UserAuthModel(data);
         return await show.save();
-}
+}   
     async signUp(signUpDto: SignUpDto) : Promise<{token:string}>
-    {
+    {   
+        //console.log("hhiii");
         const {Name,Email,Password} = signUpDto;
- // Check if the email already exists
-    const existingUser = await this.UserAuthModel.findOne({ Email }).exec();
+
+            // Check if the password is defined
+        if (!Password) {
+            throw new Error('Password is required');
+        }     
+        //console.log(Password);
+
+        // Check if the email already exists
+        const existingUser = await this.UserAuthModel.findOne({ Email }).exec();
             if (existingUser) {
                 throw new ConflictException('Email already in use');
             }

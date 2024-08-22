@@ -18,6 +18,4 @@ export class SignUpDto{
     @MinLength(6)
     readonly Password: string;
 
-
-
 }
