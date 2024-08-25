@@ -6,7 +6,7 @@ import { UserAuth, UserAuthSchema } from './user-auth.model';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config'; // 
-import config from '../config/keys';
+//import config from '../config/keys';
 
 
 @Module({
@@ -18,17 +18,11 @@ import config from '../config/keys';
           useFactory: (config: ConfigService) => {
             return {
               secret: config.get<string>('JWT_SECRET'),
-              // signOptions: { expiresIn: config.get<string | number >('JWT_EXPIRE') }
               signOptions: {expiresIn: 3 * 24 * 60 * 60 }
 
             }
           }
         }),
-             // Load ConfigModule globally
-    // ConfigModule.forRoot({
-    //   load: [() => config.JWT_EXPIRE, () => config.JWT_SECRET], // Load the configuration from keys.ts
-    //   isGlobal: true, // Make the configuration available across the application
-    // }),
         MongooseModule.forFeature([
           { name: UserAuth.name, schema: UserAuthSchema }
         ])

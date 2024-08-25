@@ -20,7 +20,14 @@ export class UserAuthController {
     async create(@Body('Name') Name: string,
                 @Body('Email') Email: string,
                 @Body('Password') Password: string){
-    
+        
+        // Check if the email already exists
+        const existingUser = await this.authService.findOne({ Email });
+        if (existingUser) {
+            throw new BadRequestException('Email already in use');
+        }
+
+
         const hashedPassword = await bcrypt.hash(Password, 10);
 
         const user= await this.authService.create({
@@ -37,6 +44,7 @@ export class UserAuthController {
     async login( @Body('Email') Email: string,
                  @Body('Password') Password: string,
                 @Res({passthrough: true}) res: Response){
+                    
         const user= await this.authService.findOne({Email});
                     if(!user){
                         throw new BadRequestException('Invalid credentials');
