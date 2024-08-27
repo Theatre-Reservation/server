@@ -14,4 +14,8 @@ export class EventsService {
   async getMaxFiveEvents(): Promise<Event[]> {
     return this.eventModel.find().limit(5).exec();
   }
+
+  async getEventById(id: string): Promise<Event> {
+    return this.eventModel.findById(id).exec();
+  }
 }
