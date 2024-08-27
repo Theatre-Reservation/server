@@ -10,6 +10,10 @@ class ScheduleDto {
     @IsString()
     @IsNotEmpty()
     time: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    price: number;
 }
 
 export class CreateMovieDto {
