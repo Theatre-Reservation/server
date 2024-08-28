@@ -28,4 +28,12 @@ export class BookingController {
   async getShowsWithMaxPriceByMovie(@Query('movieTitle') movieTitle: string): Promise<Show[]> {
     return this.bookingService.getShowsWithMaxPriceByMovie(movieTitle);
   }
+
+  @Get('by-movie-date')
+  async getShowsByMovieAndDate(
+    @Query('movieTitle') movieTitle: string,
+    @Query('date') date: string,
+  ): Promise<Show[]> {
+    return this.bookingService.getShowsByMovieAndDate(movieTitle, date);
+  }
 }

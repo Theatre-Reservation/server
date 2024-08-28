@@ -29,4 +29,8 @@ export class BookingService {
     // Return shows that match the maximum price
     return this.showModel.find({ movie: movieTitle, price: maxPrice }).exec();
   }
+
+  async getShowsByMovieAndDate(movieTitle: string, date: string): Promise<Show[]> {
+    return this.showModel.find({ movie: movieTitle, date: date }).exec();
+  }
 }

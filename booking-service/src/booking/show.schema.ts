@@ -12,7 +12,7 @@ export class Show {
     theater: string;  // Name of the theater
 
     @Prop({ required: true })
-    date: Date;
+    date: string; // Store date as a string (format: YYYY-MM-DD)
 
     @Prop({ required: true })
     time: string;

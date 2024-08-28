@@ -27,4 +27,9 @@ export class MoviesController {
   async getMovieById(@Param('id') id: string): Promise<Movie> {
     return this.moviesService.getMovieById(id);
   }
+
+  @Get('title/:title')
+  async getMovieByTitle(@Param('title') title: string): Promise<Movie | null> {
+    return this.moviesService.getMovieByTitle(title);
+  }
 }
