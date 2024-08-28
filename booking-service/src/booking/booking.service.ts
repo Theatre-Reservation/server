@@ -33,4 +33,8 @@ export class BookingService {
   async getShowsByMovieAndDate(movieTitle: string, date: string): Promise<Show[]> {
     return this.showModel.find({ movie: movieTitle, date: date }).exec();
   }
+
+  async getShowById(id: string): Promise<Show | null> {
+    return this.showModel.findById(id).exec();
+  }
 }

@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { BookingService } from './booking.service';
 import { Show } from './show.schema';
 
@@ -35,5 +35,10 @@ export class BookingController {
     @Query('date') date: string,
   ): Promise<Show[]> {
     return this.bookingService.getShowsByMovieAndDate(movieTitle, date);
+  }
+
+  @Get('single/:id')
+  async getShowById(@Param('id') id: string): Promise<Show | null> {
+    return this.bookingService.getShowById(id);
   }
 }
