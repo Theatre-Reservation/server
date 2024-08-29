@@ -41,6 +41,9 @@ export class Show {
 
     @Prop({ required: true })
     updated_at: Date;
+
+    @Prop({ type: [String], default: [] })
+    temporary_reserved_seats: string[];  // List of temporarily reserved seats
 }
 
 export const ShowSchema = SchemaFactory.createForClass(Show);
