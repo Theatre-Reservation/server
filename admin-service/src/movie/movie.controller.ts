@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { MovieService } from './movie.service';
 import { CreateMovieDto } from './dto/movie.dto';
 import { Movie } from 'src/db/movie.model';
@@ -26,7 +26,7 @@ export class MovieController {
     }
 
     // Endpoint to update a movie by ID
-    @Post(':id')
+    @Put(':id')
     async updateMovie(
         @Param('id') id: string,
         @Body() createMovieDto: CreateMovieDto,

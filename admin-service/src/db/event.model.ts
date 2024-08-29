@@ -1,10 +1,13 @@
-// src/events/schemas/event.schema.ts
-
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document , Types} from 'mongoose';
+
+export type EventDocument = Event & Document;
 
 @Schema()
 export class Event extends Document {
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
+  admin_id: Types.ObjectId;   
+
   @Prop({ required: true })
   title: string;
 
@@ -18,10 +21,10 @@ export class Event extends Document {
   venue: string;
 
   @Prop({ required: true })
-  date: string;
+  date: Date;
 
   @Prop({ required: true })
-  time: string;
+  time: number;
 
   @Prop({ required: true })
   runtime: string;

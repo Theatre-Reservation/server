@@ -8,11 +8,6 @@ import { Movie, MovieDocument } from 'src/db/movie.model';
 export class MovieService {
     constructor(@InjectModel(Movie.name) private movieModel: Model<MovieDocument>) {}
 
-    async createMovie(createMovieDto: CreateMovieDto): Promise<Movie> {
-        const createMovie = new this.movieModel(createMovieDto);
-        return createMovie.save();
-    }
-
     async getAllMovies(): Promise<Movie[]> {
         return this.movieModel.find().exec();
     }
@@ -24,10 +19,6 @@ export class MovieService {
         }
         return movie;
     }
-
-    // async getMoviesByMainGenre(main_genre: string): Promise<Movie[]> {
-    //     return this.movieModel.find({ main_genre }).exec();
-    // }
 
     async postMovie(createMovieDto: CreateMovieDto): Promise<Movie> {
         const createdMovie = new this.movieModel(createMovieDto);

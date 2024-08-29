@@ -17,12 +17,19 @@ Admin
         api/v1/reservations/:id - PUT
         api/v1/reservations/:id - DELETE
 
-    shows
-        api/v1/shows - GET
-        api/v1/shows/:id - GET
-        api/v1/shows - POST
-        api/v1/shows/:id - PUT
-        api/v1/shows/:id - DELETE
+    movies
+        api/v1/movies - GET
+        api/v1/movies/:id - GET
+        api/v1/movies - POST
+        api/v1/movies/:id - PUT
+        api/v1/movies/:id - DELETE
+
+    events
+        api/v1/events - GET
+        api/v1/events/:id - GET
+        api/v1/events - POST
+        api/v1/events/:id - PUT
+        api/v1/events/:id - DELETE
 
 
     Report Generation
