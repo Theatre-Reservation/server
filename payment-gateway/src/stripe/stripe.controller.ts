@@ -21,7 +21,8 @@ export class StripeController {
     try {
         const { amount, currency, description } = body;
 
-        const returnAddress = `${req.protocol}://${req.get('host')}/payment-success`;
+        const protocol = 'http'; // or 'https', depending on your environment
+        const returnAddress = `${protocol}://${host}/payment-success`;
         
         const formatedAmount=amount*100
         const session = await this.stripeService.createCheckoutSession(formatedAmount, currency, description,returnAddress);
