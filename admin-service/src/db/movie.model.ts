@@ -6,7 +6,7 @@ export type MovieDocument = Movie & Document;
 @Schema()
 export class Movie {
     @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
-    admin_id: Types.ObjectId;   
+    admin_id: Types.ObjectId;
 
     @Prop({ required: true })
     title: string;
@@ -35,7 +35,7 @@ export class Movie {
     @Prop({ required: true })
     runtime: string;
 
-    @Prop([{ 
+    @Prop([{
         date: { type: Date, required: true },
         time: { type: String, required: true },
         price: { type: Number, required: true }
