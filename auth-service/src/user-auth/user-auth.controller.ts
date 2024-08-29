@@ -50,7 +50,7 @@ export class UserAuthController {
                     if(!user){
                         throw new BadRequestException('Invalid credentials');
                     }
-               
+                 
                     if(!await bcrypt.compare(Password, user.Password)){
                         throw new BadRequestException('Invalid credentials');
                     }
