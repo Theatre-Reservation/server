@@ -3,12 +3,13 @@ import { Response, Request } from 'express';
 import { UserAuthService } from './user-auth.service';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-
+//import { NotificationsService } from '../../../notification-service/src/notifications/notifications.service';
 
 @Controller('user-auth')
 export class UserAuthController {
     constructor(private authService: UserAuthService,
-        private jwtService: JwtService
+        private jwtService: JwtService,
+        //private NotificationsService : NotificationsService,
     ){}
 
     @Get()
@@ -49,16 +50,36 @@ export class UserAuthController {
                     if(!user){
                         throw new BadRequestException('Invalid credentials');
                     }
-
+               
                     if(!await bcrypt.compare(Password, user.Password)){
                         throw new BadRequestException('Invalid credentials');
                     }
         const jwt = await this.jwtService.signAsync({id: user.id});
 
                     res.cookie('jwt', jwt, {httpOnly: true});
+                    // const notification= await this.NotificationsService.createUserLoggedInNotification(user.Name);
+                    // return {
+                    //     notification,
+                    //     message: 'success'
+                    // };
                     return {
                         message: 'success'
                     };
+                    // try {
+                    //     // const notification = await this.NotificationsService.createUserLoggedInNotification(user.Name);
+                    //     // return {
+                    //     //     notification,
+                          
+                    //         //  'success',
+                    //     };
+                    // } catch (error) {
+                    //     console.error('Error sending notification:', error);
+                    //     return {
+                    //         message: 'Login successful, but failed to send notification',
+                    //     };
+                    // }
+
+        
                  }
     @Get('user')
     async user(@Req() request: Request){

@@ -7,6 +7,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config'; // 
 //import config from '../config/keys';
+//import { NotificationsModule } from '../../../notification-service/src/notifications/notifications.module';
 
 
 @Module({
@@ -25,7 +26,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config'; //
         }),
         MongooseModule.forFeature([
           { name: UserAuth.name, schema: UserAuthSchema }
-        ])
+        ]),
+        // NotificationsModule,
       ],
   controllers: [UserAuthController],
   providers: [UserAuthService],

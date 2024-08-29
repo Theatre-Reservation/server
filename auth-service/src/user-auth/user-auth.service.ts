@@ -11,6 +11,7 @@ export class UserAuthService {
         @InjectModel(UserAuth.name) 
         private readonly UserAuthModel: Model<UserAuthDocument>,   
         private jwtService: JwtService,
+        
     ) {}
 
     async all(){
@@ -26,4 +27,6 @@ export class UserAuthService {
     async findOne(condition: any){
           return this.UserAuthModel.findOne(condition);
     }
+
+    
 }
