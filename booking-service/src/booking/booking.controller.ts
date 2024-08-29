@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { BookingService } from './booking.service';
 import { Show } from './show.schema';
 
@@ -40,5 +40,13 @@ export class BookingController {
   @Get('single/:id')
   async getShowById(@Param('id') id: string): Promise<Show | null> {
     return this.bookingService.getShowById(id);
+  }
+
+  @Patch('update-seats/:id')
+  async updateSeats(
+    @Param('id') id: string,
+    @Body('reservedSeats') reservedSeats: string[],
+  ): Promise<Show | null> {
+    return this.bookingService.updateSeats(id, reservedSeats);
   }
 }
