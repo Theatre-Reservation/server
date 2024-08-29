@@ -25,6 +25,12 @@ export class ShowController {
         return this.showService.getShowById(id);
     }
 
+    // Endpoint to post a show
+    @Post()
+    async postShow(@Body() createShowDto: CreateShowDto): Promise<Show> {
+        return this.showService.postShow(createShowDto);
+    }
+
     // Endpoint to update a show by ID
     @Put(':id')
     async updateShow(

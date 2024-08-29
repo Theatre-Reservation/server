@@ -25,6 +25,11 @@ export class ShowService {
         return show;
     }
 
+    async postShow(createShowDto: CreateShowDto): Promise<Show> {
+        const createdShow = new this.showModel(createShowDto);
+        return createdShow.save();
+    }
+    
     async updateShow(id: string, createShowDto: CreateShowDto): Promise<Show> {
         const updatedShow = await this.showModel.findByIdAndUpdate(id, createShowDto, {
             new: true,
