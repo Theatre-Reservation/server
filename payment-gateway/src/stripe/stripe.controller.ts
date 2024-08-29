@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Headers } from '@nestjs/common';
 import { StripeService } from './stripe.service';
 
 @Controller('stripe')
@@ -15,12 +15,16 @@ export class StripeController {
 
 
   @Post('create-checkout-session')
-  async createCheckoutSession(@Body() body: { amount: number, currency: string, description: string }) {
+  async createCheckoutSession(
+        @Body() body: { amount: number, currency: string, description: string },
+        @Headers('host') host: string) {
     try {
         const { amount, currency, description } = body;
-        console.log("amount:" + amount);
+
+        const returnAddress = `${req.protocol}://${req.get('host')}/payment-success`;
+        
         const formatedAmount=amount*100
-        const session = await this.stripeService.createCheckoutSession(formatedAmount, currency, description);
+        const session = await this.stripeService.createCheckoutSession(formatedAmount, currency, description,returnAddress);
         console.log(session.id)
         const sessionId =session.id
         return {
