@@ -82,15 +82,11 @@ export class MoviesService {
   //   return movies;
   // }
 
-  getMovie(id: string): Promise<any> {
-    const response: Observable<AxiosResponse<any>> = this.httpService.get(
-      `http://localhost:8000/api/v1/movies/${id}`
-    );
-    console.log('response', response);
-    return lastValueFrom(response).then(res => res.data);
+  async getMovieById(id: string): Promise<Movie> {
+    return this.movieModel.findById(id).exec();
   }
 
-  // async getMovieById(id: string): Promise<Movie> {
-  //   return this.movieModel.findById(id).exec();
-  // }
+  async getMovieByTitle(title: string): Promise<Movie | null> {
+    return this.movieModel.findOne({ title }).exec();
+  }
 }

@@ -16,19 +16,22 @@ export class MoviesController {
   }
 
   @Get(':main_genre')
-  async getMoviesByMainGenre(@Param('main_genre') main_genre: string) {
-    console.log(`Controller: Fetching movies by main genre: ${main_genre}`);
-      return await this.moviesService.getMoviesByMainGenre(main_genre);
-  } 
-
-  @Get('five-by-genres')
-  async getFiveMoviesFromDifferentGenres(): Promise<any[]> {
-      return await this.moviesService.getFiveMoviesFromDifferentGenres();
+  async getMoviesByMainGenre(@Param('main_genre') main_genre: string): Promise<Movie[]> {
+    return this.moviesService.getMoviesByMainGenre(main_genre);
   }
 
-  // @Get(':id')
-  // async getMovie(): Promise<any[]> {
-  //   return await this.moviesService.getMovie();
-  // }
-  
+  @Get('limited/5-different-genres')
+  async getFiveMoviesFromDifferentGenres(): Promise<Movie[]> {
+    return this.moviesService.getFiveMoviesFromDifferentGenres();
+  }
+
+  @Get('single/:id')
+  async getMovieById(@Param('id') id: string): Promise<Movie> {
+    return this.moviesService.getMovieById(id);
+  }
+
+  @Get('title/:title')
+  async getMovieByTitle(@Param('title') title: string): Promise<Movie | null> {
+    return this.moviesService.getMovieByTitle(title);
+  }
 }
