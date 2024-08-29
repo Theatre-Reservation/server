@@ -3,7 +3,6 @@ import { Document, Types } from 'mongoose';
 
 export type EventDocument = Event & Document;
 
-
 @Schema()
 export class Event extends Document {
   @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
