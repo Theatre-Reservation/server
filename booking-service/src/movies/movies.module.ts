@@ -1,19 +1,16 @@
 // src/movies/movies.module.ts
 
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { MoviesController } from './movies.controller';
 import { MoviesService } from './movies.service';
-import { HttpModule } from '@nestjs/axios';
+import { Movie, MovieSchema } from './movie.schema';
 
 @Module({
   imports: [
-    HttpModule.registerAsync({
-      useFactory: () => ({
-        timeout: 5000,
-        maxRedirects: 5,
-      }),
-    })
-  ],  controllers: [MoviesController],
+    MongooseModule.forFeature([{ name: Movie.name, schema: MovieSchema }]),
+  ],
+  controllers: [MoviesController],
   providers: [MoviesService],
 })
 export class MoviesModule {}
