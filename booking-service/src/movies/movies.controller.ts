@@ -4,6 +4,7 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 import { AxiosResponse } from 'axios';
+import { Movie } from './movie.schema';
 
 @Controller('movies')
 export class MoviesController {
