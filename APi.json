@@ -3,12 +3,39 @@ api/v1/users - POST (user logging)
 
 
 
-
-
-
-
-
-
 Booking
 api/v1/movies - GET
 api/v1/
+
+
+
+Admin
+    Reservation
+        api/v1/reservations - GET
+        api/v1/reservations/:id - GET
+        api/v1/reservations - POST
+        api/v1/reservations/:id - PUT
+        api/v1/reservations/:id - DELETE
+
+    movies
+        api/v1/movies - GET
+        api/v1/movies/:id - GET
+        api/v1/movies - POST
+        api/v1/movies/:id - PUT
+        api/v1/movies/:id - DELETE
+
+    events
+        api/v1/events - GET
+        api/v1/events/:id - GET
+        api/v1/events - POST
+        api/v1/events/:id - PUT
+        api/v1/events/:id - DELETE
+
+
+    Report Generation
+        api/v1/report/sales - GET
+        api/v1/report/revenue - GET
+        api/v1/report/popular-shows - GET
+    
+    
+
