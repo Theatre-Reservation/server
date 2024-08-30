@@ -24,7 +24,7 @@ export class Event extends Document {
   date: Date;
 
   @Prop({ required: true })
-  time: number;
+  time: string;
 
   @Prop({ required: true })
   runtime: string;

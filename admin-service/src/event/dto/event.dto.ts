@@ -28,7 +28,7 @@ export class CreateEventDto {
 
     @IsString()
     @IsNotEmpty()
-    time: string;
+    time: number;
 
     @IsNumber()
     @IsNotEmpty()
