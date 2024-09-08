@@ -1,43 +1,47 @@
-import { IsString, IsNotEmpty, IsNumber, IsArray, ValidateNested, IsDateString } from 'class-validator';
-import { Type } from 'class-transformer';
-import { Types } from 'mongoose';
-
-class ScheduleDto {
-    @IsDateString()
-    @IsNotEmpty()
-    date: string;
-
-    @IsString()
-    @IsNotEmpty()
-    time: string;
-
-    @IsNotEmpty()
-    theater_id: Types.ObjectId;
-}
+import { IsString, IsNotEmpty, IsNumber, IsArray, IsDateString } from 'class-validator';
 
 export class CreateShowDto {
     @IsString()
     @IsNotEmpty()
-    title: string;
+    movie: string; // Name of the movie
 
     @IsString()
     @IsNotEmpty()
-    img_url: string;
+    theater: string; // Name of the theater
 
     @IsString()
     @IsNotEmpty()
-    description: string;
+    date: string; // Date of the show in format (YYYY-MM-DD)
 
     @IsString()
     @IsNotEmpty()
-    genre: string;
+    time: string; // Time of the show
 
     @IsNumber()
     @IsNotEmpty()
-    duration: number; // duration in minutes
+    price: number; // Price per seat
 
     @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => ScheduleDto)
-    schedules: ScheduleDto[];
+    @IsString({ each: true })
+    seats: string[]; // List of all seats
+
+    @IsArray()
+    @IsString({ each: true })
+    reserved_seats: string[]; // List of reserved seats
+
+    @IsNumber()
+    @IsNotEmpty()
+    available_seats: number; // Number of available seats
+
+    @IsDateString()
+    @IsNotEmpty()
+    created_at: Date;
+
+    @IsDateString()
+    @IsNotEmpty()
+    updated_at: Date;
+
+    @IsArray()
+    @IsString({ each: true })
+    temporary_reserved_seats: string[]; // List of temporarily reserved seats
 }
