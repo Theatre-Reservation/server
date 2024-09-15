@@ -25,9 +25,11 @@
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.0.0",
     "@nestjs/jwt": "^10.2.0",
+    "@nestjs/microservices": "^10.4.1",
     "@nestjs/mongoose": "^10.0.10",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
+    "amqplib": "^0.10.4",
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.14.1",
     "cookie-parser": "^1.4.6",
@@ -81,23 +83,24 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
   },
-  
-    "compilerOptions": {
-      "module": "commonjs",
-      "declaration": true,
-      "removeComments": true,
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "allowSyntheticDefaultImports": true,
-      "target": "es2017",
-      "sourceMap": true,
-      "outDir": "./dist",
-      "baseUrl": "./",
-      "incremental": true,
-      "skipLibCheck": true
-    },
-    "include": ["src/**/*"],
-    "exclude": ["node_modules"]
-  
-  
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
