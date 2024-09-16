@@ -1,15 +1,15 @@
-import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Get, Post, Req, Res, UnauthorizedException , Inject} from '@nestjs/common';
 import { Response, Request } from 'express';
 import { UserAuthService } from './user-auth.service';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
-
+import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('user-auth')
 export class UserAuthController {
     constructor(private authService: UserAuthService,
         private jwtService: JwtService,
-      
+        @Inject('NOTIFICATION_SERVICE') private readonly notificationService: ClientProxy,
     ){}
 
     @Get()
@@ -51,12 +51,14 @@ export class UserAuthController {
                         throw new BadRequestException('Invalid credentials');
                     }
                  
-                    if(!await bcrypt.compare(Password, user.Password)){
+        if(!await bcrypt.compare(Password, user.Password)){
                         throw new BadRequestException('Invalid credentials');
                     }
         const jwt = await this.jwtService.signAsync({id: user.id});
 
-                    res.cookie('jwt', jwt, {httpOnly: true});
+        res.cookie('jwt', jwt, {httpOnly: true});
+         // Emit login event to RabbitMQ
+        await this.authService.emitLoginEvent(user.Email);
                   
                     return {
                         message: 'success'

@@ -5,7 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserAuth, UserAuthSchema } from './user-auth.model';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config'; // 
+import { ConfigModule, ConfigService } from '@nestjs/config'; 
+import { ClientProxyFactory, Transport } from '@nestjs/microservices';
+// 
 //import config from '../config/keys';
 //import { NotificationsModule } from '../../../notification-service/src/notifications/notifications.module';
 
@@ -30,7 +32,24 @@ import { ConfigModule, ConfigService } from '@nestjs/config'; //
         // NotificationsModule,
       ],
   controllers: [UserAuthController],
-  providers: [UserAuthService],
+  providers: [UserAuthService ,
+    {
+      provide: 'NOTIFICATION_SERVICE',
+      useFactory: () => {
+        return ClientProxyFactory.create({
+          transport: Transport.RMQ,
+          options: {
+            urls: ['amqp://localhost:5672'],
+            queue: 'notifications_queue',
+            queueOptions: {
+              durable: false,
+            },
+          },
+        });
+      },
+    },
+  ],
+  exports: ['NOTIFICATION_SERVICE'], // Export for use in other modules if needed
   
 })
 export class UserAuthModule {}
