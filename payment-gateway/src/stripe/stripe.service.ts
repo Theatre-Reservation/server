@@ -20,6 +20,7 @@ export class StripeService {
 
   async createCheckoutSession(amount: number, currency: string, description: string,returnAddress:string): Promise<Stripe.Checkout.Session> {
     const session = await this.stripe.checkout.sessions.create({
+      
       payment_method_types: ['card'],
       line_items: [
         {
@@ -34,10 +35,23 @@ export class StripeService {
         },
       ],
       mode: 'payment',
-      success_url: returnAddress+'/success', // Replace with your success URL
+      success_url: "http://localhost:5173/payment", // Replace with your success URL
       cancel_url: 'http://localhost:3000/cancel', // Replace with your cancel URL
     });
+    console.log("this is return address"+returnAddress);
 
     return session;
   }
+
+  async retrieveSession(sessionId: string|undefined): Promise<Stripe.Checkout.Session | null> {
+    console.log("this is the id: "+sessionId)
+    try {
+      
+      return await this.stripe.checkout.sessions.retrieve(sessionId);
+    } catch (error) {
+      console.log("error");
+      return null;
+    }
+  }
+
 }
