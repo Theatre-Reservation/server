@@ -7,7 +7,7 @@ export type NotificationsDocument = Notifications & Document;
 @Schema( {})
 export class Notifications{
 
-    @Prop() 
+    @Prop({ required: true, type: String }) 
     Name: string;
     @Prop() 
     Type: string;
