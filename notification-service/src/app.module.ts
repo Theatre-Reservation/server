@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SearchModule } from './search/search.module';
 import config from './config/keys';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [NotificationsModule,
@@ -26,6 +27,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         },
       ]),
     SearchModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
