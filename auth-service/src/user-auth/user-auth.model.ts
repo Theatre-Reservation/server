@@ -13,7 +13,8 @@ export class UserAuth{
     Email: string;
     @Prop()
     Password: string;
-   
+    @Prop({ default: false }) // Set default as false for regular users
+    isAdmin: boolean;
 }
 
 export const UserAuthSchema = SchemaFactory.createForClass(UserAuth);

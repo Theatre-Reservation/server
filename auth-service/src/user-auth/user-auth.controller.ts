@@ -20,7 +20,8 @@ export class UserAuthController {
     @Post('signup')
     async create(@Body('Name') Name: string,
                 @Body('Email') Email: string,
-                @Body('Password') Password: string){
+                @Body('Password') Password: string,
+                @Body('isAdmin') isAdmin: boolean,){
         
         // Check if the email already exists
         const existingUser = await this.authService.findOne({ Email });
@@ -34,7 +35,8 @@ export class UserAuthController {
         const user= await this.authService.create({
             Name,
             Email,
-            Password: hashedPassword
+            Password: hashedPassword,
+            isAdmin:  isAdmin || false, // Set isAdmin based on the request body
         });
         delete user.Password;
         return user;
@@ -47,7 +49,7 @@ export class UserAuthController {
                 @Res({passthrough: true}) res: Response){
                     
         const user= await this.authService.findOne({Email});
-                    if(!user){
+        if(!user){
                         throw new BadRequestException('Invalid credentials');
                     }
                  
@@ -61,7 +63,8 @@ export class UserAuthController {
         await this.authService.emitLoginEvent(user.Email);
                   
                     return {
-                        message: 'success'
+                        message: 'success',
+                        redirectUrl: user.isAdmin ? '/adminPage' : '/', 
                     };
                    
 
