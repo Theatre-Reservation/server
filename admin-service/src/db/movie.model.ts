@@ -38,12 +38,12 @@ export class Movie {
     @Prop([{
         date: { type: Date, required: true },
         time: { type: String, required: true },
-        price: { type: Number, required: true }
+        price: { type: String, required: true }
     }])
     schedules: Array<{
         date: Date;
         time: string;
-        price: number;
+        price: string;
     }>;
 }
 

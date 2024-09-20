@@ -30,7 +30,7 @@ export class Event extends Document {
   runtime: string;
 
   @Prop({ required: true })
-  price: string;
+  ticket_price: string;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);

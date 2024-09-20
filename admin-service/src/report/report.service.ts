@@ -38,7 +38,6 @@ export class ReportService {
             data: salesData,
             generated_at: new Date()
         });
-
         return report.save();
     }
 
