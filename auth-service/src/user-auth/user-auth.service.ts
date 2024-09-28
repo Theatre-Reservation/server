@@ -27,7 +27,6 @@ export class UserAuthService {
         return await show.save();
 }   
     
-
     async findOne(condition: any){
           return this.UserAuthModel.findOne(condition);
     }
