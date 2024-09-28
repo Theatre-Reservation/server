@@ -25,11 +25,13 @@ export class MailService {
       id: mail._id,
       name: mail.name,
       showName: mail.showName,
+      type: mail.type,
+      message: mail.message
       
     });
 
     const qrCode = await QRCode.toDataURL(qrData);
-    console.log("QR Code Data URL:", qrCode);
+    // console.log("QR Code Data URL:", qrCode);
 
     // Prepare email content
     const transporter = nodemailer.createTransport({
@@ -74,7 +76,8 @@ export class MailService {
     };
 
     // Send the email
-    return await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
+    return { message: 'Mail sent', qrCode,mail }; // Return the QR code along with the mail status
   }
 
   async createMail(mailData: Partial<Mail>): Promise<Mail> {

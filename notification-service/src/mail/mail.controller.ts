@@ -35,4 +35,38 @@ export class MailController {
     // Call the service to create a new Mail document in the database
     return this.mailService.createMail(mailData);
   }
+
+
+  @Post('send-qrcode')
+  async sendMailWithQRCode(@Body('mailId') mailId: string) {
+    try {
+      const result = await this.mailService.sendMailWithQRCode(mailId);
+      
+
+      // Get the mail object from the result
+    const mail = result.mail;
+    console.log('Mail object:', mail);
+    console.log('Name', mail.name);
+
+
+      // Assuming the QR code is generated in the sendMailWithQRCode function
+      return {
+        mail:{
+            name: mail.name,
+            showName: mail.showName,
+            type: mail.type,
+            message: mail.message,
+          },
+        message: 'E-Ticket sent successfully!',
+        qrCode: result.qrCode, // Return the QR code to the frontend
+        
+      };
+    } catch (error) {
+      return {
+
+        message: 'Error sending e-ticket',
+        error: error.message,
+      };
+    }
+  }
 }
