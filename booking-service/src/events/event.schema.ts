@@ -26,8 +26,8 @@ export class Event extends Document {
   @Prop({ required: true })
   runtime: string;
 
-  @Prop({ required: true })
-  ticket_price: string;
+  @Prop({ required: true, type: Number })  // Changed to ensure it is stored as a number
+  ticket_price: number;
 }
 
 export const EventSchema = SchemaFactory.createForClass(Event);
