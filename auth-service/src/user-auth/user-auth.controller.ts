@@ -60,7 +60,7 @@ export class UserAuthController {
 
         res.cookie('jwt', jwt, {httpOnly: true});
          // Emit login event to RabbitMQ
-        await this.authService.emitLoginEvent(user.Name);
+        await this.authService.emitLoginEvent(user.Name, user.Email);
                   
                     return {
                         message: 'success',

@@ -32,7 +32,7 @@ export class UserAuthService {
     }
 
     // Emit event when a user logs in
-    async emitLoginEvent(Name: string) {
+    async emitLoginEvent(Name: string, Email: string) {
        console.log('Emitting user_logged_in event for:', Name);
         this.client.emit('user_logged_in', {
             Name,
