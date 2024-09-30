@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
-import { SearchService } from './search.service';
-import { SearchController } from './search.controller';
+import { MoviesService } from './search.service';
+import { MoviesController } from './search.controller';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Search , SearchSchema } from './search.model';
+import { Movie ,MovieSchema } from './search.model';
 
 @Module({ 
-  imports : [
+  imports : [ 
     MongooseModule.forFeature([
-      { name: Search.name, schema: SearchSchema }
+      { name: Movie.name, schema: MovieSchema }
     ])
   ],
-  controllers: [SearchController],
-  providers: [SearchService],
+  controllers: [MoviesController],
+  providers: [MoviesService],
 })
 export class SearchModule {}

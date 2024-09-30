@@ -1,14 +1,21 @@
-// src/items/items.controller.ts
 import { Controller, Get, Query } from '@nestjs/common';
-import { SearchService } from './search.service';
+import { MoviesService } from './search.service';
 
+@Controller('movies')
+export class MoviesController {
+  constructor(private readonly moviesService: MoviesService) {}
 
-@Controller('search')
-export class SearchController {
-  constructor(private readonly SearchService: SearchService) {}
+  // Endpoint to search movies
+  @Get('search')
+  async searchMovies(@Query('q') query: string) {
+    console.log("Received query:", query);  // Log the received query
+    if (!query) {
+      console.log("No query provided");
+      return [];
+    }
 
-  @Get()
-  async search(@Query('q') query: string) {
-    return this.SearchService.search(query);
+    const result = await this.moviesService.searchMovies(query);
+    console.log("Search result:", result);  // Log the search result
+    return result;
   }
 }

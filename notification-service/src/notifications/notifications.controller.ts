@@ -8,7 +8,7 @@ export class NotificationsController {
 
     // Consumes the 'user_logged_in' event from RabbitMQ
   @EventPattern('user_logged_in')
-  async createUserLoggedInNotification(data: { Name: string }) {
+  async createUserLoggedInNotification(data: { Name: string,Email: string}) {
    // console.log('Received user_logged_in event:', data);
     const { Name } = data;
     return this.notificationsService.createUserLoggedInNotification(Name);
