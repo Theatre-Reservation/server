@@ -39,21 +39,26 @@ export class BookingService {
   }
 
   async updateSeats(id: string, reservedSeats: string[]): Promise<Show | null> {
-    const show = await this.showModel.findById(id).exec();
-    
-    if (!show) {
-      return null; // Show not found
-    }
 
-    // Calculate the number of available seats
-    const availableSeats = show.seats.length - reservedSeats.length;
-
-    // Update the show document
-    show.reserved_seats = reservedSeats;
-    show.available_seats = availableSeats;
-    show.updated_at = new Date();
-
-    // Save the updated document
-    return show.save();
+  // Find the show by ID
+  const show = await this.showModel.findById(id).exec();
+  
+  if (!show) {
+    return null; // Show not found
   }
+
+  // Combine the existing reserved seats with the new ones
+  const updatedReservedSeats = [...new Set([...show.reserved_seats, ...reservedSeats])];
+
+  // Calculate the number of available seats
+  const availableSeats = show.seats.length - updatedReservedSeats.length;
+
+  // Update the show document
+  show.reserved_seats = updatedReservedSeats;
+  show.available_seats = availableSeats;
+  show.updated_at = new Date();
+
+  // Save the updated document
+  return show.save();
+}
 }
