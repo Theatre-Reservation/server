@@ -6,10 +6,28 @@ import { UserAuthModule } from './user-auth/user-auth.module';
 import { AdminAuthModule } from './admin-auth/admin-auth.module';
 import config from './config/keys';
 import { ConfigModule } from '@nestjs/config';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ProfileAuthModule } from './profile-auth/profile-auth.module';
 
 @Module({
   
   imports: [
+    ClientsModule.register([
+      {
+        name: 'NOTIFICATION_SERVICE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://localhost:5672'], // RabbitMQ URL
+          queue: 'notifications_queue',
+          queueOptions: {
+            durable: true, // Set durable to true for reliable message delivery
+          },
+        },
+      },
+    ]),
+  
+
+
     ConfigModule.forRoot({
       isGlobal: true, 
     }),
@@ -17,7 +35,7 @@ import { ConfigModule } from '@nestjs/config';
     autoCreate: true
     }), 
 
-    UserAuthModule, AdminAuthModule],
+    UserAuthModule, AdminAuthModule, ProfileAuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
