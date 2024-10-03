@@ -46,6 +46,16 @@ export class ReservationController {
         return updatedReservation;
     }
 
+    // Update seats of a reservation
+    @Put(':id/seats')
+    async updateSeats(@Param('id') id: string, @Body('seats') seats: Array<Array<number>>) {
+        const updatedReservation = await this.reservationService.updateSeats(id, seats);
+        if (!updatedReservation) {
+            throw new BadRequestException('Reservation not found');
+        }
+        return updatedReservation;
+    }
+
     // Delete a reservation
     @Delete(':id')
     async deleteReservation(@Param('id') id: string) {

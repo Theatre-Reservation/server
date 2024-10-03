@@ -6,7 +6,6 @@ import { ReservationSchema } from '../db/reservation.model';
 import { UserSchema } from 'src/db/user.model';
 import { ShowSchema } from 'src/db/show.model';
 import { TheaterSchema } from 'src/db/theater.model';
-import { SeatSchema } from 'src/db/seat.model';
 
 @Module({
     imports: [
@@ -15,8 +14,6 @@ import { SeatSchema } from 'src/db/seat.model';
       { name: 'User', schema: UserSchema },
       { name: 'Show', schema: ShowSchema },
       { name: 'Theater', schema: TheaterSchema },
-      { name: 'seat',schema:SeatSchema}
-
     ])
   ],
   controllers: [ReservationController],

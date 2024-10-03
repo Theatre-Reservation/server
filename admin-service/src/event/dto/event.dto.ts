@@ -34,9 +34,9 @@ export class CreateEventDto {
     @IsNotEmpty()
     runtime: string;
 
-    @IsString()
+    @IsNumber()
     @IsNotEmpty()
-    ticket_price: string;
+    ticket_price: number;
 
 }
 

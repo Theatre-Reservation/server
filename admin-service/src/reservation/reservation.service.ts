@@ -51,6 +51,20 @@ export class ReservationService {
         return updatedReservation;
     }
 
+    // Update seats of a reservation
+    async updateSeats(id: string, seats: Array<Array<number>>): Promise<Reservation> {
+        const updatedReservation = await this.reservationModel.findByIdAndUpdate(
+            id,
+            { seats },
+            { new: true }
+        ).exec();
+
+        if (!updatedReservation) {
+            throw new NotFoundException('Reservation not found');
+        }
+        return updatedReservation;
+    }
+
     // Delete a reservation
     async delete(id: string): Promise<boolean> {
         const result = await this.reservationModel.findByIdAndDelete(id).exec();
