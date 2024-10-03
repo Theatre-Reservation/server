@@ -74,6 +74,10 @@ export class UserAuthController {
     async user(@Req() request: Request){
         try{
             const cookie = request.cookies['jwt'];
+            if (!cookie) {
+                console.log('JWT cookie not found');
+                throw new UnauthorizedException('JWT token missing');
+            }
             const data = await this.jwtService.verifyAsync(cookie);
             if (!data){
                 throw new UnauthorizedException();

@@ -7,6 +7,7 @@ import { AdminAuthModule } from './admin-auth/admin-auth.module';
 import config from './config/keys';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ProfileAuthModule } from './profile-auth/profile-auth.module';
 
 @Module({
   
@@ -34,7 +35,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     autoCreate: true
     }), 
 
-    UserAuthModule, AdminAuthModule],
+    UserAuthModule, AdminAuthModule, ProfileAuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
