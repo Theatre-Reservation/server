@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+// import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   // Create the HTTP application
@@ -25,7 +25,7 @@ async function bootstrap() {
   // });
 
   // Start both HTTP server and the microservice
-  //await app.startAllMicroservices(); // Start the microservice
+ // await app.startAllMicroservices(); // Start the microservice
   await app.listen(8600); // Start the HTTP server on port 8500
 
 }
