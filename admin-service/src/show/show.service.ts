@@ -1,50 +1,65 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CreateShowDto } from './dto/show.dto';
 import { Show, ShowDocument } from '../db/show.model';
+import { CreateShowDto } from './dto/show.dto';
 
 @Injectable()
-export class ShowService {
-    constructor(@InjectModel(Show.name) private showModel: Model<ShowDocument>) {}
+export class ShowsService {
+  constructor(
+    @InjectModel(Show.name) private readonly showModel: Model<ShowDocument>,
+  ) {}
 
-    async createShow(createShowDto: CreateShowDto): Promise<Show> {
-        const createdShow = new this.showModel(createShowDto);
-        return createdShow.save();
+  // Retrieve all shows
+  async getAllShows(): Promise<Show[]> {
+    return this.showModel.find().exec();
+  }
+
+  // Retrieve a single show by ID
+  async getShowById(showId: string): Promise<Show> {
+    const show = await this.showModel.findById(showId).exec();
+    if (!show) {
+      throw new NotFoundException(`Show with ID ${showId} not found`);
+    }
+    return show;
+  }
+
+  // retrieve a single show by movie name
+  async getShowByMovie(movie: string): Promise<Show[]> {
+    const show = await this.showModel.find({movie: movie}).exec();
+    if (!show) {
+      throw new NotFoundException(`Show with movie ${movie} not found`);
+    }
+    return show;
+  }
+
+  // Create a new show
+  async createShow(createShowDto: CreateShowDto): Promise<Show> {
+    const newShow = new this.showModel(createShowDto);
+    return newShow.save();
+  }
+
+  // Update a show by ID
+  async updateShow(
+    showId: string,
+    updateShowDto: CreateShowDto,
+  ): Promise<Show> {
+    const updatedShow = await this.showModel
+      .findByIdAndUpdate(showId, updateShowDto, { new: true })
+      .exec();
+
+    if (!updatedShow) {
+      throw new NotFoundException(`Show with ID ${showId} not found`);
     }
 
-    async getAllShows(): Promise<Show[]> {
-        return this.showModel.find().exec();
-    }
+    return updatedShow;
+  }
 
-    async getShowById(id: string): Promise<Show> {
-        const show = await this.showModel.findById(id).exec();
-        if (!show) {
-            throw new NotFoundException(`Show with ID ${id} not found`);
-        }
-        return show;
+  // Delete a show by ID
+  async deleteShow(showId: string): Promise<void> {
+    const result = await this.showModel.findByIdAndDelete(showId).exec();
+    if (!result) {
+      throw new NotFoundException(`Show with ID ${showId} not found`);
     }
-
-    async postShow(createShowDto: CreateShowDto): Promise<Show> {
-        const createdShow = new this.showModel(createShowDto);
-        return createdShow.save();
-    }
-    
-    async updateShow(id: string, createShowDto: CreateShowDto): Promise<Show> {
-        const updatedShow = await this.showModel.findByIdAndUpdate(id, createShowDto, {
-            new: true,
-        }).exec();
-        if (!updatedShow) {
-            throw new NotFoundException(`Show with ID ${id} not found`);
-        }
-        return updatedShow;
-    }
-
-    async deleteShow(id: string): Promise<Show> {
-        const deletedShow = await this.showModel.findByIdAndDelete(id).exec();
-        if (!deletedShow) {
-            throw new NotFoundException(`Show with ID ${id} not found`);
-        }
-        return deletedShow;
-    }
+  }
 }

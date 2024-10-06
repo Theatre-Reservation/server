@@ -28,15 +28,15 @@ export class CreateEventDto {
 
     @IsString()
     @IsNotEmpty()
-    time: number;
-
-    @IsNumber()
-    @IsNotEmpty()
-    runtime: number;
+    time: string;
 
     @IsString()
     @IsNotEmpty()
-    price: String;
+    runtime: string;
+
+    @IsNumber()
+    @IsNotEmpty()
+    ticket_price: number;
 
 }
 

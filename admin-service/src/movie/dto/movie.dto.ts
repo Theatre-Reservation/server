@@ -11,9 +11,9 @@ class ScheduleDto {
     @IsNotEmpty()
     time: string;
 
-    @IsNumber()
+    @IsString()
     @IsNotEmpty()
-    price: number;
+    price: string;
 }
 
 export class CreateMovieDto {
