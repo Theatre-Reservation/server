@@ -83,7 +83,7 @@ export class MailService {
 
     const mailOptions = {
       from: 'shalanikuruppu08@gmail.com',
-      to: 'shalanikuruppu12@gmail.com', // Replace with actual recipient email
+      to: 'leshmith1212@gmail.com', // Replace with actual recipient email
       subject: `Your E-Ticket for ${mail.showName}`,
       html: `<div style="font-family: Arial, sans-serif; line-height: 1.6;">
       <h2 style="color: #333;">🎟️ Your E-Ticket for ${mail.showName}</h2>
