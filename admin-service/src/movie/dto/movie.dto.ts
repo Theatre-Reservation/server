@@ -2,19 +2,19 @@ import { IsString, IsNotEmpty, IsNumber, IsArray, ValidateNested, IsDateString }
 import { Type } from 'class-transformer';
 import { Types } from 'mongoose';
 
-class ScheduleDto {
-    @IsDateString()
-    @IsNotEmpty()
-    date: string;
+// class ScheduleDto {
+//     @IsDateString()
+//     @IsNotEmpty()
+//     date: string;
 
-    @IsString()
-    @IsNotEmpty()
-    time: string;
+//     @IsString()
+//     @IsNotEmpty()
+//     time: string;
 
-    @IsString()
-    @IsNotEmpty()
-    price: string;
-}
+//     @IsString()
+//     @IsNotEmpty()
+//     price: string;
+// }
 
 export class CreateMovieDto {
     @IsString()
@@ -41,8 +41,8 @@ export class CreateMovieDto {
     @IsNotEmpty()
     runtime: number; // runtime in minutes
 
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => ScheduleDto)
-    schedules: ScheduleDto[];
+    // @IsArray()
+    // @ValidateNested({ each: true })
+    // @Type(() => ScheduleDto)
+    // schedules: ScheduleDto[];
 }

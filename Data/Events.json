@@ -9,7 +9,7 @@
     "date": "2001-09-08T18:00:00.000Z",
     "time": "07:00 PM",
     "runtime": "5 hrs",
-    "ticket_price": "LKR 3500"
+    "ticket_price": 3500
   },
   {
     "_id": "66cdc17754505baeecc22021",
@@ -21,7 +21,7 @@
     "date": "2001-08-31T00:00:00.000Z",
     "time": "5:37 PM",
     "runtime": "4 hrs",
-    "ticket_price": "LKR 5000"
+    "ticket_price": 5000
   },
   {
     "_id": "66cdc17754505baeecc22023",
@@ -33,18 +33,6 @@
     "date": "2001-09-17T18:00:00.000Z",
     "time": "6:5 AM",
     "runtime": "3 hrs 30 mins",
-    "ticket_price": "LKR 4000"
-  },
-  {
-    "_id": "66e579c424c9cad6fb2dff95",
-    "admin_id": "64e1f26b2a91d130d5a14e3f",
-    "title": "sanjana",
-    "description": "My name is sanjana",
-    "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/images%2Fsanjana1.jpg?alt=media&token=8243c335-729c-4508-b312-8c8e4d0ee1e9",
-    "venue": "ghvnhbmn",
-    "date": "2024-09-14T00:00:00.000Z",
-    "time": "5:23 PM",
-    "runtime": "1 hrs 25 mins",
-    "price": "LKR 1500"
+    "ticket_price": 4000
   }
 ]
