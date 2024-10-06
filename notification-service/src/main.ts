@@ -13,19 +13,19 @@ async function bootstrap() {
   });
   
   // Connect the RabbitMQ microservice to the same app
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.RMQ,
-    options: {
-      urls: ['amqp://localhost:5672'], // Ensure RabbitMQ port is correct
-      queue: 'notifications_queue',
-      queueOptions: {
-        durable: false,
-      },
-    },
-  });
+  // app.connectMicroservice<MicroserviceOptions>({
+  //   transport: Transport.RMQ,
+  //   options: {
+  //     urls: ['amqp://localhost:5672'], // Ensure RabbitMQ port is correct
+  //     queue: 'notifications_queue',
+  //     queueOptions: {
+  //       durable: false,
+  //     },
+  //   },
+  // });
 
   // Start both HTTP server and the microservice
-  await app.startAllMicroservices(); // Start the microservice
+  //await app.startAllMicroservices(); // Start the microservice
   await app.listen(8600); // Start the HTTP server on port 8500
 
 }
