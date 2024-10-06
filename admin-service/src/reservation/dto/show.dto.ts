@@ -25,13 +25,13 @@ export class CreateShowDto {
     @IsNumber()
     seats: Array<Array<number>>; // List of all seats
 
-    @IsArray()
-    @IsString({ each: true })
-    reserved_seats: string[]; // List of reserved seats
+    // @IsArray()
+    // @IsString({ each: true })
+    // reserved_seats: string[]; // List of reserved seats
 
-    @IsNumber()
-    @IsNotEmpty()
-    available_seats: number; // Number of available seats
+    // @IsNumber()
+    // @IsNotEmpty()
+    // available_seats: number; // Number of available seats
 
     @IsDateString()
     @IsNotEmpty()
@@ -41,7 +41,7 @@ export class CreateShowDto {
     @IsNotEmpty()
     updated_at: Date;
 
-    @IsArray()
-    @IsString({ each: true })
-    temporary_reserved_seats: string[]; // List of temporarily reserved seats
+    // @IsArray()
+    // @IsString({ each: true })
+    // temporary_reserved_seats: string[]; // List of temporarily reserved seats
 }
