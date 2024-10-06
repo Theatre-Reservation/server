@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ShowController } from './show.controller';
-import { ShowService } from './show.service';
+import { ShowsController } from './show.controller';
+import { ShowsService } from './show.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Show, ShowSchema } from '../db/show.model';
 
@@ -10,7 +10,7 @@ import { Show, ShowSchema } from '../db/show.model';
       { name: Show.name, schema: ShowSchema }
     ])
   ],
-  controllers: [ShowController],
-  providers: [ShowService]
+  controllers: [ShowsController],
+  providers: [ShowsService]
 })
 export class ShowModule {}

@@ -1,42 +1,66 @@
-import { Controller, Post, Body, Get, Param, Put, Delete } from '@nestjs/common';
-import { ShowService } from './show.service';
-import { CreateShowDto } from './dto/show.dto';
+import {
+  Controller,
+  Get,
+  Post,
+  Patch,
+  Delete,
+  Param,
+  Body,
+  NotFoundException,
+} from '@nestjs/common';
+import { ShowsService } from './show.service';
 import { Show } from '../db/show.model';
+import { CreateShowDto } from './dto/show.dto';
 
 @Controller('shows')
-export class ShowController {
-    constructor(private readonly showService: ShowService) {}
+export class ShowsController {
+  constructor(private readonly showsService: ShowsService) {}
 
-    // Endpoint to create a new show
-    @Post()
-    async createShow(@Body() createShowDto: CreateShowDto): Promise<Show> {
-        return this.showService.createShow(createShowDto);
-    }
+  // Retrieve all shows
+  @Get()
+  async getAllShows(): Promise<Show[]> {
+    return this.showsService.getAllShows();
+  }
 
-    // Endpoint to get all shows
-    @Get()
-    async getAllShows(): Promise<Show[]> {
-        return this.showService.getAllShows();
-    }
+  // Create a new show
+  @Post()
+  async createShow(@Body() createShowDto: CreateShowDto): Promise<Show> {
+    return this.showsService.createShow(createShowDto);
+  }
 
-    // Endpoint to get a single show by ID
-    @Get(':id')
-    async getShowById(@Param('id') id: string): Promise<Show> {
-        return this.showService.getShowById(id);
-    }
+  // Retrieve a single show by ID
+  // @Get(':id')
+  // async getShowById(@Param('id') showId: string): Promise<Show> {
+  //   const show = await this.showsService.getShowById(showId);
+  //   if (!show) {
+  //     throw new NotFoundException(`Show with ID ${showId} not found`);
+  //   }
+  //   return show;
+  // }
 
-    // Endpoint to update a show by ID
-    @Put(':id')
-    async updateShow(
-        @Param('id') id: string,
-        @Body() createShowDto: CreateShowDto,
-    ): Promise<Show> {
-        return this.showService.updateShow(id, createShowDto);
+  // retrieve a single show by movie name
+  @Get(':movie')
+  async getShowByMovie(@Param('movie') movie: string): Promise<Show[]> {
+    const show = await this.showsService.getShowByMovie(movie);
+    if (!show) {
+      throw new NotFoundException(`Show with movie ${movie} not found`);
     }
+    return show;
+  }
 
-    // Endpoint to delete a show by ID
-    @Delete(':id')
-    async deleteShow(@Param('id') id: string): Promise<Show> {
-        return this.showService.deleteShow(id);
-    }
+
+  // Update a show by ID
+  @Patch(':id')
+  async updateShow(
+    @Param('id') showId: string,
+    @Body() updateShowDto: CreateShowDto,
+  ): Promise<Show> {
+    return this.showsService.updateShow(showId, updateShowDto);
+  }
+
+  // Delete a show by ID
+  @Delete(':id')
+  async deleteShow(@Param('id') showId: string): Promise<void> {
+    return this.showsService.deleteShow(showId);
+  }
 }

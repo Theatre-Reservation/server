@@ -17,8 +17,8 @@ export class Reservation {
     @Prop({ type: Types.ObjectId, ref: 'Theater', required: true })
     theater_id: Types.ObjectId;
 
-    @Prop({ type: [{ seat_number: String, status: String }], required: true })
-    seats: Array<{ seat_number: string; status: string }>;
+    @Prop({ type: Array<Array<number>>, required: true })
+    seats: Array<Array<number>>;
 
     @Prop({ required: true })
     total_price: number;
