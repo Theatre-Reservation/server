@@ -1,5 +1,3 @@
-// src/movies/movies.controller.ts
-
 import { Controller, Get, Param } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Movie } from './movie.schema';
