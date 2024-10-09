@@ -48,6 +48,16 @@ export class ShowsController {
     return show;
   }
 
+  // Retrieve all shows by Admin_Id
+  @Get('admin/:admin_id')
+  async getShowByAdminId(@Param('admin_id') adminId: string): Promise<Show[]> {
+    const show = await this.showsService.getShowByAdminId(adminId);
+    if (!show) {
+      throw new NotFoundException(`Show with Admin ID ${adminId} not found`);
+    }
+    return show;
+  }
+
 
   // Update a show by ID
   @Patch(':id')
@@ -63,4 +73,10 @@ export class ShowsController {
   async deleteShow(@Param('id') showId: string): Promise<void> {
     return this.showsService.deleteShow(showId);
   }
+
+  // Count the reserved seats for a show
+  // @Get(':id/reserved_seats')
+  // async countReservedSeats(@Param('id') showId: string): Promise<number> {
+  //   return this.showsService.countReservedSeats(showId);
+  // }
 }

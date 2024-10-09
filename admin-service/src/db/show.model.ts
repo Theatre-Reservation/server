@@ -1,10 +1,13 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export type ShowDocument = Show & Document;
 
 @Schema()
 export class Show {
+    @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
+    admin_id: Types.ObjectId;
+    
     @Prop({ type: String, ref: 'Movie', required: true })
     movie: string;  // Name of the movie
 

@@ -24,6 +24,15 @@ export class ShowsService {
     return show;
   }
 
+  // Retrieve all shows by Admin_Id
+  async getShowByAdminId(adminId: string): Promise<Show[]> {
+    const show = await this.showModel.find({admin_id: adminId}).exec();
+    if (!show) {
+      throw new NotFoundException(`Show with Admin ID ${adminId} not found`);
+    }
+    return show;
+  }
+
   // retrieve a single show by movie name
   async getShowByMovie(movie: string): Promise<Show[]> {
     const show = await this.showModel.find({movie: movie}).exec();
@@ -62,4 +71,19 @@ export class ShowsService {
       throw new NotFoundException(`Show with ID ${showId} not found`);
     }
   }
+
+  // Counts the number of reserved seats for a specific show.
+  //  async countReservedSeats(showId: string): Promise<number> {
+  //   const show = await this.showModel.findById(showId).exec();
+  //   if (!show) {
+  //     throw new NotFoundException('Show not found');
+  //   }
+
+  //   // Assuming reserved seats are marked with 2
+  //   const reservedCount = (show.seats as unknown as number[][]).flat().filter(seat => seat === 2).length;
+  //   return reservedCount;
+  // }
+
+
 }
+
