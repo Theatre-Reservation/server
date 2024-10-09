@@ -49,4 +49,13 @@ export class BookingController {
   ): Promise<Show | null> {
     return this.bookingService.updateSeats(id, reservedSeats);
   }
+
+  @Patch('lock-seats/:id')
+async lockSeats(
+    @Param('id') id: string,
+    @Body('temporaryReservedSeats') temporaryReservedSeats: string[],
+): Promise<Show | null> {
+    return this.bookingService.lockSeats(id, temporaryReservedSeats);
+}
+
 }
