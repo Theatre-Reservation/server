@@ -7,10 +7,16 @@ import {
   Param,
   Body,
   NotFoundException,
+  Query,
+  // Query,
 } from '@nestjs/common';
 import { ShowsService } from './show.service';
 import { Show } from '../db/show.model';
 import { CreateShowDto } from './dto/show.dto';
+import { query } from 'express';
+// import { log } from 'console';
+// import { query } from 'express';
+// import { Transaction } from 'src/db/moviePayment.model';
 
 @Controller('shows')
 export class ShowsController {
@@ -48,15 +54,39 @@ export class ShowsController {
     return show;
   }
 
-  // Retrieve all shows by Admin_Id
-  @Get('admin/:admin_id')
-  async getShowByAdminId(@Param('admin_id') adminId: string): Promise<Show[]> {
-    const show = await this.showsService.getShowByAdminId(adminId);
+  // Retrieve all shows by Theatre
+  @Get('admin/theater')
+  async getShowByTheatre(@Query('theater') theater: string): Promise<Show[]> {
+    const show = await this.showsService.getShowByTheatre(theater);
     if (!show) {
-      throw new NotFoundException(`Show with Admin ID ${adminId} not found`);
+      throw new NotFoundException(`Show with Theatre ${theater} not found`);
     }
     return show;
   }
+
+  // Retrieve all revenue by Theatre
+  @Get('admin/revenue')
+  async getRevenueByTheatre(@Query('theater') theater: string): Promise<number> {
+    const show = await this.showsService.getRevenueByTheatre(theater);
+    console.log(show);
+    return show;
+  }
+
+  // Retrieve all booking by Theatre
+  @Get('admin/booking')
+  async getBookingByTheatre(@Query('theater') theater: string): Promise<number> {
+    const booking = await this.showsService.getBookingByTheatre(theater);
+    console.log(booking);
+    return booking;
+  }
+
+  // Retrieve all mail count by show
+  // @Get('admin/user')
+  // async getUsersByShow(@Query('show') show: string): Promise<number> {
+  //   const mail = await this.showsService.getMailCountByMovie(show);
+  //   console.log(mail);
+  //   return mail;
+  // }
 
 
   // Update a show by ID
@@ -68,15 +98,19 @@ export class ShowsController {
     return this.showsService.updateShow(showId, updateShowDto);
   }
 
+  // Update seats of a show by ID
+  @Patch(':id/seats')
+  async updateShowSeats(
+    @Param('id') showId: string,
+    @Body('seats') seats: Array<Array<number>>,
+  ): Promise<Show> {
+    return this.showsService.updateShowSeats(showId, seats);
+  }
+
   // Delete a show by ID
   @Delete(':id')
   async deleteShow(@Param('id') showId: string): Promise<void> {
     return this.showsService.deleteShow(showId);
   }
 
-  // Count the reserved seats for a show
-  // @Get(':id/reserved_seats')
-  // async countReservedSeats(@Param('id') showId: string): Promise<number> {
-  //   return this.showsService.countReservedSeats(showId);
-  // }
 }

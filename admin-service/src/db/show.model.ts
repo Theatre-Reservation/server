@@ -12,7 +12,7 @@ export class Show {
     movie: string;  // Name of the movie
 
     @Prop({ type: String, ref: 'Theatre', required: true })
-    theatre: string;  // Name of the theater
+    theater: string;  // Name of the theater
 
     @Prop({ required: true })
     date: string; // Store date as a string (format: YYYY-MM-DD)
@@ -26,11 +26,11 @@ export class Show {
     @Prop({ type: [[Number]], required: true })
     seats: { type: Array<Array<number>>, required: true }
 
-    // @Prop({ type: [String], default: [] })
-    // reserved_seats: string[];  // List of reserved seats
+    @Prop({ type: [String], default: [] })
+    reserved_seats: string[];  // List of reserved seats
 
-    // @Prop({ required: true })
-    // available_seats: number;  // Track number of available seats
+    @Prop({ required: true })
+    available_seats: number;  // Track number of available seats
 
     @Prop({ required: true })
     created_at: Date;
