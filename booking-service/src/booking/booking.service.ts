@@ -97,4 +97,26 @@ export class BookingService {
 
     return show.save();
   }
+
+  // **New Method: releaseSeats**
+  async releaseSeats(showId: string, seatsToRelease: string[]): Promise<Show | null> {
+    // Find the show by ID
+    const show = await this.showModel.findById(showId).exec();
+
+    if (!show) {
+      return null; // Show not found
+    }
+
+    // Remove only the specified seats from temporary_reserved_seats
+    const updatedTemporaryReservedSeats = show.temporary_reserved_seats.filter(
+      (seat) => !seatsToRelease.includes(seat)
+    );
+
+    // Update the show document
+    show.temporary_reserved_seats = updatedTemporaryReservedSeats;
+    show.updated_at = new Date();
+
+    // Save the updated document
+    return show.save();
+  }
 }
