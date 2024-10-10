@@ -107,6 +107,13 @@ export class ShowsController {
     return this.showsService.updateShowSeats(showId, seats);
   }
 
+  // get set by show id
+  @Get(':id/seats')
+  async getSeats(@Param('id') showId: string): Promise<any> {
+    return this.showsService.getSeats(showId);
+  }
+
+
   // Delete a show by ID
   @Delete(':id')
   async deleteShow(@Param('id') showId: string): Promise<void> {

@@ -5,8 +5,8 @@ export type ShowDocument = Show & Document;
 
 @Schema()
 export class Show {
-    @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
-    admin_id: Types.ObjectId;
+    // @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
+    // admin_id: Types.ObjectId;
     
     @Prop({ type: String, ref: 'Movie', required: true })
     movie: string;  // Name of the movie
@@ -32,10 +32,10 @@ export class Show {
     @Prop({ required: true })
     available_seats: number;  // Track number of available seats
 
-    @Prop({ required: true })
+    @Prop()
     created_at: Date;
 
-    @Prop({ required: true })
+    @Prop()
     updated_at: Date;
 
     // @Prop({ type: [String], default: [] })

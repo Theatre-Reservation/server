@@ -117,6 +117,15 @@ export class ShowsService {
   //   return mail.length;
   // }
 
+  // // get seat layout by show id
+  // async getSeatLayout(showId: string): Promise<Array<Array<number>>> {
+  //   const show = await this.showModel.findById(showId).exec();
+  //   if (!show) {
+  //     throw new NotFoundException(`Show with ID ${showId} not found`);
+  //   }
+  //   return show.seats;
+  // }
+
   // update show seats
   async updateShowSeats(showId: string, seats: Array<Array<number>>): Promise<Show> {
     const updatedShow = await this.showModel
@@ -128,6 +137,16 @@ export class ShowsService {
     }
 
     return updatedShow;
+  }
+
+  // get set by show id
+  async getSeats(showId: string): Promise<any> {
+    const show = await this.showModel.findById
+    (showId).exec();
+    if (!show) {
+      throw new NotFoundException(`Show with ID ${showId} not found`);
+    }
+    return show.seats;
   }
 
 
