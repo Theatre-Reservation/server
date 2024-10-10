@@ -45,15 +45,15 @@ export class MailService {
 
     // Generate QR code from the provided data
     const qrData = JSON.stringify({
-      userName,
-      userEmail,
-      movieName,
-      theatreName,
-      selectedSeats,
-      eventTitle,
-      venue,
-      ticketCount,
-      isMovie
+      userName: userName,
+      userEmail: userEmail,
+      movieName: movieName,
+      theatreName: theatreName,
+      selectedSeats: selectedSeats,
+      eventTitle: eventTitle,
+      venue: venue,
+      ticketCount:ticketCount,
+      isMovie: isMovie
     });
 
     console.log(qrData);
@@ -85,7 +85,7 @@ export class MailService {
 
     const mailOptions = {
       from: 'shalanikuruppu08@gmail.com',
-      to: 'shalanikuruppu12@gmail.com', // Send to the user's email
+      to: userEmail, // Send to the user's email
       subject: `Your E-Ticket for ${isMovie ? movieName : eventTitle}`,
       html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6;">
