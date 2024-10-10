@@ -1,15 +1,18 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export type ShowDocument = Show & Document;
 
 @Schema()
 export class Show {
+    // @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
+    // admin_id: Types.ObjectId;
+    
     @Prop({ type: String, ref: 'Movie', required: true })
     movie: string;  // Name of the movie
 
     @Prop({ type: String, ref: 'Theatre', required: true })
-    theatre: string;  // Name of the theater
+    theater: string;  // Name of the theater
 
     @Prop({ required: true })
     date: string; // Store date as a string (format: YYYY-MM-DD)
@@ -23,16 +26,16 @@ export class Show {
     @Prop({ type: [[Number]], required: true })
     seats: { type: Array<Array<number>>, required: true }
 
-    // @Prop({ type: [String], default: [] })
-    // reserved_seats: string[];  // List of reserved seats
-
-    // @Prop({ required: true })
-    // available_seats: number;  // Track number of available seats
+    @Prop({ type: [String], default: [] })
+    reserved_seats: string[];  // List of reserved seats
 
     @Prop({ required: true })
+    available_seats: number;  // Track number of available seats
+
+    @Prop()
     created_at: Date;
 
-    @Prop({ required: true })
+    @Prop()
     updated_at: Date;
 
     // @Prop({ type: [String], default: [] })
