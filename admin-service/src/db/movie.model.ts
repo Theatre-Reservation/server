@@ -35,16 +35,18 @@ export class Movie {
     @Prop({ required: true })
     runtime: string;
 
-    @Prop([{
-        date: { type: Date, required: true },
-        time: { type: String, required: true },
-        price: { type: Number, required: true }
-    }])
-    schedules: Array<{
-        date: Date;
-        time: string;
-        price: number;
-    }>;
+    // @Prop([{
+    //     date: { type: Date, required: true },
+    //     time: { type: String, required: true },
+    //     price: { type: String, required: true },
+    //     seats: { type: Array<Array<number>>, required: true }
+    // }])
+    // schedules: Array<{
+    //     date: Date;
+    //     time: string;
+    //     price: string;
+    //     seats: Array<Array<number>>;
+    // }>;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
