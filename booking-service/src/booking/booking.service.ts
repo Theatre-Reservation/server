@@ -73,32 +73,28 @@ export class BookingService {
     // Combine existing temporary reserved seats with new ones
     const updatedTemporaryReservedSeats = [...new Set([...show.temporary_reserved_seats, ...temporaryReservedSeats])];
 
-    // Set expiration time to 10 minutes from now
-    const expirationTime = new Date();
-    expirationTime.setMinutes(expirationTime.getMinutes() + 10);
+    // Update the show document
+    show.temporary_reserved_seats = updatedTemporaryReservedSeats;
+  
+    return show.save();
+  }
+
+  async releaseSpecificSeats(id: string, seatsToRelease: string[]): Promise<Show | null> {
+    const show = await this.showModel.findById(id).exec();
+
+    if (!show) {
+        return null;
+    }
+
+    // Remove only the specified seats from temporary_reserved_seats
+    const updatedTemporaryReservedSeats = show.temporary_reserved_seats.filter(
+        (seat) => !seatsToRelease.includes(seat)
+    );
 
     // Update the show document
     show.temporary_reserved_seats = updatedTemporaryReservedSeats;
-    show.temporary_reserved_until = expirationTime;
     show.updated_at = new Date();
 
     return show.save();
   }
-
-  // calls from main.ts
-  async releaseExpiredSeats() {
-    const now = new Date();
-    const expiredShows = await this.showModel.find({
-        temporary_reserved_until: { $lte: now },
-        temporary_reserved_seats: { $ne: [] }, // Only find shows with temporarily reserved seats
-    });
-
-    expiredShows.forEach(async (show) => {
-        show.temporary_reserved_seats = []; // Clear the temporarily reserved seats
-        show.temporary_reserved_until = null; // Reset the expiration time
-        show.updated_at = new Date();
-        await show.save();
-    });
-  }
-
 }

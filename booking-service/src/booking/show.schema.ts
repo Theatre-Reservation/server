@@ -45,8 +45,6 @@ export class Show {
     @Prop({ type: [String], default: [] })
     temporary_reserved_seats: string[];  // List of temporarily reserved seats
 
-    @Prop({ type: Date })
-    temporary_reserved_until: Date; // Time until which seats are locked
 }
 
 export const ShowSchema = SchemaFactory.createForClass(Show);
