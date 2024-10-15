@@ -22,7 +22,7 @@ export class User {
 
     @Prop({ required: true })
     created_at: Date;
-
+    
     @Prop({ required: true })
     updated_at: Date;
 }
