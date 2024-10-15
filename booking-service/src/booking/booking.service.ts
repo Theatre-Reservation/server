@@ -5,6 +5,7 @@ import { Show, ShowDocument } from './show.schema';
 
 @Injectable()
 export class BookingService {
+  static releaseExpiredSeats: any;
   constructor(
     @InjectModel(Show.name) private showModel: Model<ShowDocument>,
   ) {}
@@ -60,5 +61,62 @@ export class BookingService {
 
   // Save the updated document
   return show.save();
-}
+  }
+
+  async lockSeats(id: string, temporaryReservedSeats: string[]): Promise<Show | null> {
+    const show = await this.showModel.findById(id).exec();
+
+    if (!show) {
+        return null;
+    }
+
+    // Combine existing temporary reserved seats with new ones
+    const updatedTemporaryReservedSeats = [...new Set([...show.temporary_reserved_seats, ...temporaryReservedSeats])];
+
+    // Update the show document
+    show.temporary_reserved_seats = updatedTemporaryReservedSeats;
+  
+    return show.save();
+  }
+
+  async releaseSpecificSeats(id: string, seatsToRelease: string[]): Promise<Show | null> {
+    const show = await this.showModel.findById(id).exec();
+
+    if (!show) {
+        return null;
+    }
+
+    // Remove only the specified seats from temporary_reserved_seats
+    const updatedTemporaryReservedSeats = show.temporary_reserved_seats.filter(
+        (seat) => !seatsToRelease.includes(seat)
+    );
+
+    // Update the show document
+    show.temporary_reserved_seats = updatedTemporaryReservedSeats;
+    show.updated_at = new Date();
+
+    return show.save();
+  }
+
+  // **New Method: releaseSeats**
+  async releaseSeats(showId: string, seatsToRelease: string[]): Promise<Show | null> {
+    // Find the show by ID
+    const show = await this.showModel.findById(showId).exec();
+
+    if (!show) {
+      return null; // Show not found
+    }
+
+    // Remove only the specified seats from temporary_reserved_seats
+    const updatedTemporaryReservedSeats = show.temporary_reserved_seats.filter(
+      (seat) => !seatsToRelease.includes(seat)
+    );
+
+    // Update the show document
+    show.temporary_reserved_seats = updatedTemporaryReservedSeats;
+    show.updated_at = new Date();
+
+    // Save the updated document
+    return show.save();
+  }
 }
