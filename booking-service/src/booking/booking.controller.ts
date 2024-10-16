@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query, Post } from '@nestjs/common';
 import { BookingService } from './booking.service';
 import { Show } from './show.schema';
 
@@ -48,5 +48,35 @@ export class BookingController {
     @Body('reservedSeats') reservedSeats: string[],
   ): Promise<Show | null> {
     return this.bookingService.updateSeats(id, reservedSeats);
+  }
+
+  @Patch('lock-seats/:id')
+  async lockSeats(
+    @Param('id') id: string,
+    @Body('temporaryReservedSeats') temporaryReservedSeats: string[],
+  ): Promise<Show | null> {
+    return this.bookingService.lockSeats(id, temporaryReservedSeats);
+  }
+
+  @Patch('release-seats/:id')
+  async releaseSpecificSeats(
+    @Param('id') id: string,
+    @Body('seatsToRelease') seatsToRelease: string[],
+  ): Promise<Show | null> {
+    return this.bookingService.releaseSpecificSeats(id, seatsToRelease);
+  }
+
+  // **New Endpoint: POST /booking/release-seats**
+  @Post('release-seats')
+  async releaseSeats(
+    @Body('showId') showId: string,
+    @Body('seatsToRelease') seatsToRelease: string[],
+  ): Promise<{ message: string } | { message: string }> {
+    const updatedShow = await this.bookingService.releaseSeats(showId, seatsToRelease);
+    if (updatedShow) {
+      return { message: 'Seats released successfully.' };
+    } else {
+      return { message: 'Failed to release seats. Show not found.' };
+    }
   }
 }
