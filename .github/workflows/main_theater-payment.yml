@@ -25,17 +25,17 @@ jobs:
         run: |
           npm ci
           npm run build --if-present
-        working-directory: payment-service
+        working-directory: payment-gateway
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
-        working-directory: payment-service
+        working-directory: payment-gateway
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: ./payment-service/release.zip
+          path: ./payment-gateway/release.zip
 
   deploy:
     runs-on: ubuntu-latest
