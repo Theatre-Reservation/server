@@ -3,12 +3,12 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from '../db/show.model';
 import { CreateShowDto } from './dto/show.dto';
-import { Mail, MailDocument } from '../db/mail.model';
+// import { Mail, MailDocument } from '../db/mail.model';
 @Injectable()
 export class ShowsService {
   constructor(
     @InjectModel(Show.name) private readonly showModel: Model<ShowDocument>,
-    @InjectModel(Mail.name) private readonly mailModel: Model<MailDocument>
+    // @InjectModel(Mail.name) private readonly mailModel: Model<MailDocument>
   ) {}
 
   // Retrieve all shows
