@@ -10,7 +10,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.setGlobalPrefix('api/v1');
   app.use(cors({
-    origin: 'http://localhost:5173', // Allow this specific origin
+    origin: ['http://localhost:5173','https://flash-ticket-admin.netlify.app'],// Allow this specific origin
     credentials: true,               // Allow credentials
   }));
   
