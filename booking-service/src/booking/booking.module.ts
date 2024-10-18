@@ -7,6 +7,7 @@ import { BookingService } from './booking.service';
 import { Show, ShowSchema } from './show.schema';
 import { Theater, TheaterSchema } from './theatre.schema';
 import { Movie, MovieSchema } from '../movies/movie.schema';
+import { UserAuth, UserAuthSchema } from './user-auth.schema'; // **Import UserAuth schema**
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { Movie, MovieSchema } from '../movies/movie.schema';
       { name: Show.name, schema: ShowSchema },
       { name: Theater.name, schema: TheaterSchema },
       { name: Movie.name, schema: MovieSchema },
+      { name: UserAuth.name, schema: UserAuthSchema }, // **Register UserAuth model**
     ]),
   ],
   controllers: [BookingController],
