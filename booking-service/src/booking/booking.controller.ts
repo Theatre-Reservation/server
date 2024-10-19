@@ -79,4 +79,37 @@ export class BookingController {
       return { message: 'Failed to release seats. Show not found.' };
     }
   }
+
+  /**
+ * **New Endpoint: Get Loyalty Points**
+ * GET /booking/loyalty-points/:userId
+ * Retrieves the available loyalty points for a user.
+ */
+  @Get('loyalty-points/:userId')
+  async getLoyaltyPoints(@Param('userId') userId: string): Promise<{ loyaltyPoints: number } | { message: string }> {
+    const points = await this.bookingService.getLoyaltyPoints(userId);
+    if (points !== null) {
+      return { loyaltyPoints: points };
+    } else {
+      return { message: 'User not found.' };
+    }
+  }
+
+  /**
+   * **New Endpoint: Update Loyalty Points**
+   * PATCH /booking/loyalty-points/:userId
+   * Adds loyalty points to a user's account.
+   * Expects a JSON body with a `points` field indicating the number of points to add.
+   */
+  @Patch('loyalty-points/:userId')
+  async updateLoyaltyPoints(
+      @Param('userId') userId: string,
+      @Body() updatePointsDto: { points: number }
+  ) {
+      const updatedUser = await this.bookingService.updateLoyaltyPoints(userId, updatePointsDto.points);
+      return {
+          message: 'Loyalty points updated successfully. New balance: ${updatedUser.loyaltyPoints} points.',
+          newBalance: updatedUser.loyaltyPoints,
+      };
+  }
 }
