@@ -1,41 +1,35 @@
-# Step 1: Use a Smaller Base Image with Multi-Stage Build
 # Stage 1: Build Stage
-FROM node:16-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Set the working directory
 WORKDIR /usr/src/app
 
-# Step 2: Copy only the necessary files and install production dependencies
-COPY package*.json ./
-RUN npm install --only=production
+# Copy package.json and tsconfig.json to the container
+COPY package*.json tsconfig.json ./
+
+# Install both dev and production dependencies to get the NestJS CLI
+RUN npm install
+
+# Install NestJS CLI globally for build step
+RUN npm install -g @nestjs/cli
 
 # Copy the rest of the application files
 COPY . .
 
-# Step 3: Build the application
+# Build the application
 RUN npm run build
 
-# Stage 2: Production Stage (Smaller base image for runtime)
-FROM node:16-alpine
+# Stage 2: Production Stage
+FROM node:20-alpine
 
-# Step 4: Set the working directory for the production environment
 WORKDIR /usr/src/app
 
-# Step 5: Copy only the built application from the builder stage
+# Copy built application and necessary files from the builder stage
 COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package*.json ./
 
-# Step 6: Expose the necessary port
+# Expose the necessary port
 EXPOSE 8000
 
-# Step 7: Start the application in production mode
 CMD ["node", "dist/main"]
-
-# Step 8: .dockerignore (exclude unnecessary files)
-# Create a .dockerignore file to reduce the size of the build context:
-# .dockerignore content:
-# node_modules
-# .git
-# logs
-# tmp
