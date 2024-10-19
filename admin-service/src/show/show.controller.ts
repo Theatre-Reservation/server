@@ -79,6 +79,11 @@ export class ShowsController {
     return show;
   }
 
+  @Post(':id/apply-discount')
+  async applyDiscount(@Param('id') id: string, @Body() discountData: { percentage?: number; amount?: number; expiry?: Date  }): Promise<Show> {
+      return this.showsService.applyDiscount(id, discountData);
+  }
+
   // Update a show by ID
   @Patch(':id')
   async updateShow(

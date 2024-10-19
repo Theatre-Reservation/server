@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from '../db/show.model';
@@ -113,6 +113,58 @@ export class ShowsService {
     if (!result) {
       throw new NotFoundException(`Show with ID ${showId} not found`);
     }
+  }
+
+  async applyDiscount(showId: string, discountData: { percentage?: number; amount?: number; expiry?: Date }): Promise<Show> {
+    const show: ShowDocument = await this.showModel.findById(showId).exec();
+    if (!show) {
+        throw new NotFoundException(`Show with ID ${showId} not found`);
+    }
+
+    // Check if the discount is expired
+    console.log(discountData.expiry < new Date())
+        // Check if the discount expiry date is provided
+    if (discountData.expiry) {
+        const expiryDate = new Date(discountData.expiry); // Convert expiry to Date object
+        const currentDate = new Date(); // Get the current date
+
+        // Check if the expiry date is in the past
+        if (expiryDate < currentDate) {
+            console.log("The discount has expired.");
+            throw new BadRequestException(`Cannot apply discount; current discount has expired.`);
+        }
+    }
+    console.log("percentage", discountData.percentage);
+
+    let discountPrice = 0;
+    if (discountData.percentage) {
+            show.discountPercentage = discountData.percentage;
+            show.discountAmount = undefined; // Clear fixed discount if percentage is applied
+            discountPrice = show.price * (discountData.percentage / 100);
+            console.log("discountPrice", discountPrice);
+            show.price = show.price - discountPrice;
+    } else if (discountData.amount) {
+            show.discountAmount = discountData.amount;
+            show.discountPercentage = undefined; // Clear percentage discount if fixed amount is applied
+            discountPrice = discountData.amount;
+            show.price = show.price - discountPrice;
+    }
+
+        // Set the discount expiry date if provided
+    if (discountData.expiry) {
+        show.discountExpiry = new Date(discountData.expiry); // Ensure it's a Date object
+    }
+    console.log(show)
+        return show;
+    }
+
+     catch (error) {
+        console.error('Error applying discount:', error); // Log the error for debugging
+        if (error instanceof NotFoundException || error instanceof BadRequestException) {
+            throw error; // Rethrow known exceptions
+        } else {
+            throw new InternalServerErrorException('Failed to apply discount');
+        }
   }
 
 }
