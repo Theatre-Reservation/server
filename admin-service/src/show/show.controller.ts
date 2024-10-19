@@ -8,6 +8,7 @@ import {
   Body,
   NotFoundException,
   Query,
+  BadRequestException,
   // Query,
 } from '@nestjs/common';
 import { ShowsService } from './show.service';
@@ -70,14 +71,27 @@ export class ShowsController {
   }
 
   // Retrieve all shows by Theatre
-  @Get('admin/theater')
-  async getShowByTheatre(@Query('theater') theater: string): Promise<Show[]> {
-    const show = await this.showsService.getShowByTheatre(theater);
-    if (!show) {
-      throw new NotFoundException(`Show with Theatre ${theater} not found`);
+@Get('admin/theater')
+async getShowByTheatre(
+    @Query('theater') theater: string,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string
+): Promise<Show[]> {
+    if (!theater) {
+        throw new BadRequestException('Theater is required.');
     }
-    return show;
-  }
+    if (!startDate || !endDate) {
+        throw new BadRequestException('Start date and end date are required.');
+    }
+
+    const shows = await this.showsService.getShowByTheatre(theater, startDate, endDate);
+    if (!shows || shows.length === 0) {
+        throw new NotFoundException(`No shows found for Theatre ${theater} between ${startDate} and ${endDate}`);
+    }
+
+    return shows;
+}
+
 
   @Post(':id/apply-discount')
   async applyDiscount(@Param('id') id: string, @Body() discountData: { percentage?: number; amount?: number; expiry?: Date  }): Promise<Show> {

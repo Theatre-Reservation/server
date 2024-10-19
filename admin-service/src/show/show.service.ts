@@ -43,15 +43,29 @@ export class ShowsService {
   }
 
   // Retrieve all shows by Theatre
-  async getShowByTheatre(_theater: string): Promise<Show[]> {
-    const show = await this.showModel.find({theater: _theater}).exec();
-    console.log(_theater);
+async getShowByTheatre(theatre: string, startDate: string, endDate: string): Promise<Show[]> {
+    // Convert the startDate and endDate to Date objects
+    const start = new Date(new Date(startDate).setUTCHours(0, 0, 0, 0));
+    const end = new Date(new Date(endDate).setUTCHours(23, 59, 59, 999));
 
-    if (!show) {
-      throw new NotFoundException(`Show with Theatre ${_theater} not found`);
+    // Find shows that match the theater and whose schedules fall within the date range
+    const shows = await this.showModel.find({
+        theater: theatre,
+        "schedules.date": { // Assuming you have a schedules array with date
+            $gte: start,
+            $lte: end,
+        }
+    }).exec();
+
+    console.log('Shows: ', shows);
+
+    if (!shows || shows.length === 0) {
+        throw new NotFoundException(`No shows found for Theatre ${theatre} in the specified date range`);
     }
-    return show;
-  }
+
+    return shows;
+}
+
 
   // retrieve a single show by movie name
   async getShowByMovie(movie: string): Promise<Show[]> {
