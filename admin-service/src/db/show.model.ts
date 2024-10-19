@@ -26,7 +26,7 @@ export class Show {
     @Prop({ default: 0, required: false })
     discountAmount: number; // Fixed discount amount
 
-    @Prop({ required: true })
+    @Prop({ required: false })
     discountExpiry: Date; // Expiry date for the discount
 
     @Prop({ required: true })

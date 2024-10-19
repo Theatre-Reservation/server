@@ -2,9 +2,9 @@ import { IsString, IsNotEmpty, IsNumber, IsDate } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class CreateEventDto {
-    @IsString()
-    @IsNotEmpty()
-    admin_id: Types.ObjectId;
+    // @IsString()
+    // @IsNotEmpty()
+    // admin_id: Types.ObjectId;
 
     @IsString()
     @IsNotEmpty()
