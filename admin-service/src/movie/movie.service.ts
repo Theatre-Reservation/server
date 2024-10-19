@@ -3,10 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateMovieDto } from './dto/movie.dto';
 import { Movie, MovieDocument } from 'src/db/movie.model';
+import { MovieGateway } from './movie.gateway';
 
 @Injectable()
 export class MovieService {
-    constructor(@InjectModel(Movie.name) private movieModel: Model<MovieDocument>) {}
+    constructor(@InjectModel(Movie.name) private movieModel: Model<MovieDocument>,
+    private movieGateway: MovieGateway,
+) {}
 
     async getAllMovies(): Promise<Movie[]> {
         return this.movieModel.find().exec();
@@ -22,8 +25,17 @@ export class MovieService {
 
     async postMovie(createMovieDto: CreateMovieDto): Promise<Movie> {
         const createdMovie = new this.movieModel(createMovieDto);
-        return createdMovie.save();
-    }
+        // return createdMovie.save();
+        const savedMovie = await createdMovie.save();
+        // Notify all clients that a new movie was added
+        this.movieGateway.notifyNewMovie(savedMovie);
+        console.log("savedMovie", savedMovie);
+        return savedMovie;
+        
+          
+    } 
+
+    
 
     async updateMovie(id: string, createMovieDto: CreateMovieDto): Promise<Movie> {
         const updatedMovie = await this.movieModel.findByIdAndUpdate(id, createMovieDto, {
