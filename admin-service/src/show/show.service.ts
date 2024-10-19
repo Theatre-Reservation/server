@@ -3,12 +3,10 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from '../db/show.model';
 import { CreateShowDto } from './dto/show.dto';
-// import { Mail, MailDocument } from '../db/mail.model';
 @Injectable()
 export class ShowsService {
   constructor(
     @InjectModel(Show.name) private readonly showModel: Model<ShowDocument>,
-    // @InjectModel(Mail.name) private readonly mailModel: Model<MailDocument>
   ) {}
 
   // Retrieve all shows
@@ -25,11 +23,21 @@ export class ShowsService {
     return show;
   }
 
-  // Retrieve all shows by Admin_Id
-  async getShowByAdminId(adminId: string): Promise<Show[]> {
-    const show = await this.showModel.find({admin_id: adminId}).exec();
+  // Retrieve all shows based on Theatre and movie names
+  async getShowByTheatreAndMovie(
+    _theater: string,
+    _movie: string,
+  ): Promise<Show[]> {
+    const show = await this.showModel
+      // .find({ theater: _theater, movie: _movie })
+      .find({theater: { $regex: new RegExp(_theater, 'i') }, // case-insensitive search
+      movie: { $regex: new RegExp(_movie, 'i') }}, // case-insensitive search
+      )
+      .exec();
     if (!show) {
-      throw new NotFoundException(`Show with Admin ID ${adminId} not found`);
+      throw new NotFoundException(
+        `Show with Theatre ${_theater} and Movie ${_movie} not found`,
+      );
     }
     return show;
   }
@@ -43,36 +51,6 @@ export class ShowsService {
       throw new NotFoundException(`Show with Theatre ${_theater} not found`);
     }
     return show;
-  }
-
-  // Retrieve all revenue by Theatre
-  async getRevenueByTheatre(theater: string): Promise<number> {
-    const shows = await this.showModel.find({theater: theater}).exec();
-    if (!shows) {
-      console.log("jshadg")
-      throw new NotFoundException(`Show with Theater ${theater} not found`);
-    }
-    let revenue = 0;
-    for (let i = 0; i < shows.length; i++) {
-        revenue += shows[i].price * (80 - shows[i].available_seats);
-        // console.log("revenue", revenue);
-      
-    }
-    // console.log(revenue);
-    return revenue;
-  }
-
-  // Retreive all booking by theater
-  async getBookingByTheatre(theater: string): Promise<number> {
-    const shows = await this.showModel.find({theater: theater}).exec();
-    if (!shows) {
-      throw new NotFoundException(`Show with Theater ${theater} not found`);
-    }
-    let booking = 0;
-    for (let i = 0; i < shows.length; i++) {
-        booking += (80 - shows[i].available_seats);
-    }
-    return booking;
   }
 
   // retrieve a single show by movie name
@@ -106,26 +84,6 @@ export class ShowsService {
     return updatedShow;
   }
 
-  // Get all mail count by movie name
-  // async getMailCountByMovie(movie: string): Promise<number> {
-  //   const mail = await this.mailModel.find({showName: movie}).exec();
-  //   console.log(mail);
-  //   if (!mail) {
-  //     throw new NotFoundException(`Mail with movie ${movie} not found`);
-  //   }
-  //   console.log(mail.length);
-  //   return mail.length;
-  // }
-
-  // // get seat layout by show id
-  // async getSeatLayout(showId: string): Promise<Array<Array<number>>> {
-  //   const show = await this.showModel.findById(showId).exec();
-  //   if (!show) {
-  //     throw new NotFoundException(`Show with ID ${showId} not found`);
-  //   }
-  //   return show.seats;
-  // }
-
   // update show seats
   async updateShowSeats(showId: string, seats: Array<Array<number>>): Promise<Show> {
     const updatedShow = await this.showModel
@@ -148,7 +106,6 @@ export class ShowsService {
     }
     return show.seats;
   }
-
 
   // Delete a show by ID
   async deleteShow(showId: string): Promise<void> {
