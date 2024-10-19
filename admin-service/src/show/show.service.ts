@@ -48,10 +48,12 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
     const start = new Date(new Date(startDate).setUTCHours(0, 0, 0, 0));
     const end = new Date(new Date(endDate).setUTCHours(23, 59, 59, 999));
 
+    console.log('Start Date: ', start);
+    console.log('End Date: ', end);
     // Find shows that match the theater and whose schedules fall within the date range
     const shows = await this.showModel.find({
         theater: theatre,
-        "schedules.date": { // Assuming you have a schedules array with date
+        created_at: { 
             $gte: start,
             $lte: end,
         }
