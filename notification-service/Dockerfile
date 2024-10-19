@@ -1,6 +1,6 @@
 # Step 1: Use a Smaller Base Image with Multi-Stage Build
 # Stage 1: Build Stage
-FROM node:16-alpine AS builder
+FROM node:18-alpine AS builder
 
 # Set the working directory
 WORKDIR /usr/src/app
@@ -16,7 +16,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Production Stage (Smaller base image for runtime)
-FROM node:16-alpine
+FROM node:18-alpine
 
 # Step 4: Set the working directory for the production environment
 WORKDIR /usr/src/app

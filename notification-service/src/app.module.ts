@@ -12,7 +12,7 @@ import { EventSearchModule } from './event_search/event_search.module';
 
 @Module({
   imports: [NotificationsModule,
-    MongooseModule.forRoot(config.mongoURI,{
+    MongooseModule.forRoot('mongodb+srv://sanjana:V79JbHLxydlGsDoo@admin.pbcjo.mongodb.net/',{
       autoCreate: true
       }),
     SearchModule,
