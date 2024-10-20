@@ -89,7 +89,7 @@ export class EventService {
     } else {
         show.discountExpiry = undefined; // Clear expiry if not provided
     }
-    this.eventGateway.notifyNewMovie(show);
+    this.eventGateway.notifyEventDiscount(show);
     console.log(show)
         return show;
     } catch (error) {

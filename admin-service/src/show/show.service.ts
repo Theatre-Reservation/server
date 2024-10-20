@@ -177,7 +177,7 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
     } else {
         show.discountExpiry = undefined; // Clear expiry if not provided
     }
-    this.showGateway.notifyNewMovie(show);
+    this.showGateway.notifyShowDiscount(show);
     console.log(show)
         return show;
     }

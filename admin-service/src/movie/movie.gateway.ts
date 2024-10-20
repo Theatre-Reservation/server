@@ -28,5 +28,17 @@ import {
       console.log('New movie added:', movie);
       this.server.emit('newMovie', movie); // Broadcast to all connected clients
     }
+
+    // Function to emit new show discount notifications
+    notifyShowDiscount(show: any) {
+      console.log('Show discount added:', show);
+      this.server.emit('newShowDiscount', show); // Broadcast to all connected clients
+    }
+
+    // Function to emit new event discount notifications
+    notifyEventDiscount(event: any) {
+      console.log('Event discount added:', event);
+      this.server.emit('newEventDiscount', event); // Broadcast to all connected clients
+    }
   }
   
