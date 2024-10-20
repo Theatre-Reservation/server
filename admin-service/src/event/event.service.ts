@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateEventDto } from './dto/event.dto';
 import { Event, EventDocument } from 'src/db/event.model';
+import { MovieGateway } from '../movie/movie.gateway';
 
 
 @Injectable()
 export class EventService {
-    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>) {}
+    constructor(@InjectModel(Event.name) private eventModel: Model<EventDocument>,
+    private eventGateway: MovieGateway,) {}
 
     async getAllEvents(): Promise<Event[]> {
         return this.eventModel.find().exec();
@@ -77,17 +79,20 @@ export class EventService {
             show.discountPercentage = undefined; // Clear percentage discount if fixed amount is applied
             discountPrice = discountData.amount;
             show.ticket_price = show.ticket_price - discountPrice;
+    } else {
+        throw new BadRequestException('Discount amount or percentage must be provided');
     }
 
         // Set the discount expiry date if provided
     if (discountData.expiry) {
         show.discountExpiry = new Date(discountData.expiry); // Ensure it's a Date object
+    } else {
+        show.discountExpiry = undefined; // Clear expiry if not provided
     }
+    this.eventGateway.notifyNewMovie(show);
     console.log(show)
         return show;
-    }
-
-     catch (error) {
+    } catch (error) {
         console.error('Error applying discount:', error); // Log the error for debugging
         if (error instanceof NotFoundException || error instanceof BadRequestException) {
             throw error; // Rethrow known exceptions

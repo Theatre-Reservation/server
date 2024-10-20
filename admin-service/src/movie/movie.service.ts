@@ -31,11 +31,7 @@ export class MovieService {
         this.movieGateway.notifyNewMovie(savedMovie);
         console.log("savedMovie", savedMovie);
         return savedMovie;
-        
-          
-    } 
-
-    
+    }
 
     async updateMovie(id: string, createMovieDto: CreateMovieDto): Promise<Movie> {
         const updatedMovie = await this.movieModel.findByIdAndUpdate(id, createMovieDto, {
