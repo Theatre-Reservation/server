@@ -5,8 +5,8 @@ export type MovieDocument = Movie & Document;
 
 @Schema()
 export class Movie {
-    @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
-    admin_id: Types.ObjectId;
+    // @Prop({ required: true, type: Types.ObjectId, ref: 'Admin' })
+    // admin_id: Types.ObjectId;
 
     @Prop({ required: true })
     title: string;

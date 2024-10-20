@@ -35,8 +35,8 @@ export class StripeService {
         },
       ],
       mode: 'payment',
-      success_url: "http://localhost:5173/payment", // Replace with your success URL
-      cancel_url: 'http://localhost:3000/cancel', // Replace with your cancel URL
+      success_url: "https://flash-ticket.netlify.app/payment",
+      cancel_url: 'http://localhost:3000/cancel', // Replace with your cancel URL (Not working) 
     });
     console.log("this is return address"+returnAddress);
 

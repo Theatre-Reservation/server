@@ -1,14 +1,12 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from '../db/show.model';
 import { CreateShowDto } from './dto/show.dto';
-import { Mail, MailDocument } from '../db/mail.model';
 @Injectable()
 export class ShowsService {
   constructor(
     @InjectModel(Show.name) private readonly showModel: Model<ShowDocument>,
-    @InjectModel(Mail.name) private readonly mailModel: Model<MailDocument>
   ) {}
 
   // Retrieve all shows
@@ -25,55 +23,51 @@ export class ShowsService {
     return show;
   }
 
-  // Retrieve all shows by Admin_Id
-  async getShowByAdminId(adminId: string): Promise<Show[]> {
-    const show = await this.showModel.find({admin_id: adminId}).exec();
+  // Retrieve all shows based on Theatre and movie names
+  async getShowByTheatreAndMovie(
+    _theater: string,
+    _movie: string,
+  ): Promise<Show[]> {
+    const show = await this.showModel
+      // .find({ theater: _theater, movie: _movie })
+      .find({theater: { $regex: new RegExp(_theater, 'i') }, // case-insensitive search
+      movie: { $regex: new RegExp(_movie, 'i') }}, // case-insensitive search
+      )
+      .exec();
     if (!show) {
-      throw new NotFoundException(`Show with Admin ID ${adminId} not found`);
+      throw new NotFoundException(
+        `Show with Theatre ${_theater} and Movie ${_movie} not found`,
+      );
     }
     return show;
   }
 
   // Retrieve all shows by Theatre
-  async getShowByTheatre(_theater: string): Promise<Show[]> {
-    const show = await this.showModel.find({theater: _theater}).exec();
-    console.log(_theater);
+async getShowByTheatre(theatre: string, startDate: string, endDate: string): Promise<Show[]> {
+    // Convert the startDate and endDate to Date objects
+    const start = new Date(new Date(startDate).setUTCHours(0, 0, 0, 0));
+    const end = new Date(new Date(endDate).setUTCHours(23, 59, 59, 999));
 
-    if (!show) {
-      throw new NotFoundException(`Show with Theatre ${_theater} not found`);
-    }
-    return show;
-  }
+    console.log('Start Date: ', start);
+    console.log('End Date: ', end);
+    // Find shows that match the theater and whose schedules fall within the date range
+    const shows = await this.showModel.find({
+        theater: theatre,
+        created_at: { 
+            $gte: start,
+            $lte: end,
+        }
+    }).exec();
 
-  // Retrieve all revenue by Theatre
-  async getRevenueByTheatre(theater: string): Promise<number> {
-    const shows = await this.showModel.find({theater: theater}).exec();
-    if (!shows) {
-      console.log("jshadg")
-      throw new NotFoundException(`Show with Theater ${theater} not found`);
-    }
-    let revenue = 0;
-    for (let i = 0; i < shows.length; i++) {
-        revenue += shows[i].price * (80 - shows[i].available_seats);
-        // console.log("revenue", revenue);
-      
-    }
-    // console.log(revenue);
-    return revenue;
-  }
+    console.log('Shows: ', shows);
 
-  // Retreive all booking by theater
-  async getBookingByTheatre(theater: string): Promise<number> {
-    const shows = await this.showModel.find({theater: theater}).exec();
-    if (!shows) {
-      throw new NotFoundException(`Show with Theater ${theater} not found`);
+    if (!shows || shows.length === 0) {
+        throw new NotFoundException(`No shows found for Theatre ${theatre} in the specified date range`);
     }
-    let booking = 0;
-    for (let i = 0; i < shows.length; i++) {
-        booking += (80 - shows[i].available_seats);
-    }
-    return booking;
-  }
+
+    return shows;
+}
+
 
   // retrieve a single show by movie name
   async getShowByMovie(movie: string): Promise<Show[]> {
@@ -106,26 +100,6 @@ export class ShowsService {
     return updatedShow;
   }
 
-  // Get all mail count by movie name
-  // async getMailCountByMovie(movie: string): Promise<number> {
-  //   const mail = await this.mailModel.find({showName: movie}).exec();
-  //   console.log(mail);
-  //   if (!mail) {
-  //     throw new NotFoundException(`Mail with movie ${movie} not found`);
-  //   }
-  //   console.log(mail.length);
-  //   return mail.length;
-  // }
-
-  // // get seat layout by show id
-  // async getSeatLayout(showId: string): Promise<Array<Array<number>>> {
-  //   const show = await this.showModel.findById(showId).exec();
-  //   if (!show) {
-  //     throw new NotFoundException(`Show with ID ${showId} not found`);
-  //   }
-  //   return show.seats;
-  // }
-
   // update show seats
   async updateShowSeats(showId: string, seats: Array<Array<number>>): Promise<Show> {
     const updatedShow = await this.showModel
@@ -149,7 +123,6 @@ export class ShowsService {
     return show.seats;
   }
 
-
   // Delete a show by ID
   async deleteShow(showId: string): Promise<void> {
     const result = await this.showModel.findByIdAndDelete(showId).exec();
@@ -158,6 +131,57 @@ export class ShowsService {
     }
   }
 
+  async applyDiscount(showId: string, discountData: { percentage?: number; amount?: number; expiry?: Date }): Promise<Show> {
+    const show: ShowDocument = await this.showModel.findById(showId).exec();
+    if (!show) {
+        throw new NotFoundException(`Show with ID ${showId} not found`);
+    }
+
+    // Check if the discount is expired
+    console.log(discountData.expiry < new Date())
+        // Check if the discount expiry date is provided
+    if (discountData.expiry) {
+        const expiryDate = new Date(discountData.expiry); // Convert expiry to Date object
+        const currentDate = new Date(); // Get the current date
+
+        // Check if the expiry date is in the past
+        if (expiryDate < currentDate) {
+            console.log("The discount has expired.");
+            throw new BadRequestException(`Cannot apply discount; current discount has expired.`);
+        }
+    }
+    console.log("percentage", discountData.percentage);
+
+    let discountPrice = 0;
+    if (discountData.percentage) {
+            show.discountPercentage = discountData.percentage;
+            show.discountAmount = undefined; // Clear fixed discount if percentage is applied
+            discountPrice = show.price * (discountData.percentage / 100);
+            console.log("discountPrice", discountPrice);
+            show.price = show.price - discountPrice;
+    } else if (discountData.amount) {
+            show.discountAmount = discountData.amount;
+            show.discountPercentage = undefined; // Clear percentage discount if fixed amount is applied
+            discountPrice = discountData.amount;
+            show.price = show.price - discountPrice;
+    }
+
+        // Set the discount expiry date if provided
+    if (discountData.expiry) {
+        show.discountExpiry = new Date(discountData.expiry); // Ensure it's a Date object
+    }
+    console.log(show)
+        return show;
+    }
+
+     catch (error) {
+        console.error('Error applying discount:', error); // Log the error for debugging
+        if (error instanceof NotFoundException || error instanceof BadRequestException) {
+            throw error; // Rethrow known exceptions
+        } else {
+            throw new InternalServerErrorException('Failed to apply discount');
+        }
+  }
 
 }
 

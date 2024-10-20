@@ -40,4 +40,9 @@ export class EventController {
         return this.eventService.deleteEvent(id);
     }
 
+     @Post(':id/apply-discount')
+  async applyDiscount(@Param('id') id: string, @Body() discountData: { percentage?: number; amount?: number; expiry?: Date  }): Promise<Event> {
+      return this.eventService.applyDiscount(id, discountData);
+  }
+
 }

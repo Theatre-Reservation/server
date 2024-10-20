@@ -17,9 +17,9 @@ import { Types } from 'mongoose';
 // }
 
 export class CreateMovieDto {
-    @IsString()
-    @IsNotEmpty()
-    admin_id: Types.ObjectId;
+    // @IsString()
+    // @IsNotEmpty()
+    // admin_id: Types.ObjectId;
 
     @IsString()
     @IsNotEmpty()

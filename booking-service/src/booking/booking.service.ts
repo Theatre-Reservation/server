@@ -1,13 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from './show.schema';
+import { UserAuth, UserAuthDocument } from './user-auth.schema'; // **Import UserAuth schema**
 
 @Injectable()
 export class BookingService {
   static releaseExpiredSeats: any;
   constructor(
     @InjectModel(Show.name) private showModel: Model<ShowDocument>,
+    @InjectModel(UserAuth.name) private userModel: Model<UserAuthDocument>, // **Inject UserAuth model**
   ) {}
 
   async getShowsByMovieTitle(movieTitle: string): Promise<Show[]> {
@@ -119,4 +121,43 @@ export class BookingService {
     // Save the updated document
     return show.save();
   }
+
+  /**
+ * **New Method: Get Loyalty Points**
+ * Retrieves the current loyalty points of a user.
+ * @param userId - The ID of the user.
+ * @returns The number of loyalty points.
+ */
+  async getLoyaltyPoints(userId: string): Promise<number | null> {
+    const user = await this.userModel.findById(userId).exec();
+    if (user) {
+      return user.loyaltyPoints;
+    }
+    return null; // User not found
+  }
+
+  /**
+   * Update Loyalty Points
+   * @param userId - The ID of the user
+   * @param points - The number of points to add (positive) or deduct (negative)
+   * @returns The updated user or null if not found
+   */
+  async updateLoyaltyPoints(userId: string, points: number): Promise<UserAuth | null> {
+    const user = await this.userModel.findById(userId).exec();
+    if (!user) {
+        throw new NotFoundException('User not found');
+    }
+
+    const newLoyaltyPoints = user.loyaltyPoints + points;
+
+    if (newLoyaltyPoints < 0) {
+        throw new BadRequestException('Insufficient loyalty points');
+    }
+
+    user.loyaltyPoints = newLoyaltyPoints;
+    await user.save();
+
+    return user;
+  }
+  
 }
