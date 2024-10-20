@@ -141,7 +141,7 @@ export class ShowsService {
 
         // Check if the expiry date is in the past
         if (expiryDate < currentDate) {
-            console.log("The discount has expired.");
+            // console.log("The discount has expired.");
             throw new BadRequestException(`Cannot apply discount; current discount has expired.`);
         }
     }
@@ -152,7 +152,7 @@ export class ShowsService {
             show.discountPercentage = discountData.percentage;
             show.discountAmount = undefined; // Clear fixed discount if percentage is applied
             discountPrice = show.price * (discountData.percentage / 100);
-            console.log("discountPrice", discountPrice);
+            // console.log("discountPrice", discountPrice);
             show.price = show.price - discountPrice;
     } else if (discountData.amount) {
             show.discountAmount = discountData.amount;
