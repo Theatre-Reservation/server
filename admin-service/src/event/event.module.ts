@@ -3,6 +3,7 @@ import { EventController } from './event.controller';
 import { EventService } from './event.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Event, EventSchema } from 'src/db/event.model';
+import { MovieGateway } from 'src/movie/movie.gateway';
 
 @Module({
     imports: [
@@ -11,6 +12,6 @@ import { Event, EventSchema } from 'src/db/event.model';
     ])
   ],
   controllers: [EventController],
-  providers: [EventService]
+  providers: [EventService, MovieGateway]
 })
 export class EventModule {}

@@ -3,10 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Show, ShowDocument } from '../db/show.model';
 import { CreateShowDto } from './dto/show.dto';
+import { MovieGateway } from '../movie/movie.gateway';
+
 @Injectable()
 export class ShowsService {
   constructor(
     @InjectModel(Show.name) private readonly showModel: Model<ShowDocument>,
+    private showGateway: MovieGateway,
   ) {}
 
   // Retrieve all shows
@@ -164,12 +167,17 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
             show.discountPercentage = undefined; // Clear percentage discount if fixed amount is applied
             discountPrice = discountData.amount;
             show.price = show.price - discountPrice;
+    } else {
+        throw new BadRequestException('Discount amount or percentage must be provided');
     }
 
         // Set the discount expiry date if provided
     if (discountData.expiry) {
         show.discountExpiry = new Date(discountData.expiry); // Ensure it's a Date object
+    } else {
+        show.discountExpiry = undefined; // Clear expiry if not provided
     }
+    this.showGateway.notifyShowDiscount(show);
     console.log(show)
         return show;
     }

@@ -3,6 +3,7 @@ import { ShowsController } from './show.controller';
 import { ShowsService } from './show.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Show, ShowSchema } from '../db/show.model';
+import { MovieGateway } from 'src/movie/movie.gateway';
 @Module({
   imports: [
     MongooseModule.forFeature([
@@ -10,6 +11,6 @@ import { Show, ShowSchema } from '../db/show.model';
     ])
   ],
   controllers: [ShowsController],
-  providers: [ShowsService]
+  providers: [ShowsService, MovieGateway]
 })
 export class ShowModule {}
