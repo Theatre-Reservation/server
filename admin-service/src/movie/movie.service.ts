@@ -29,7 +29,7 @@ export class MovieService {
         const savedMovie = await createdMovie.save();
         // Notify all clients that a new movie was added
         this.movieGateway.notifyNewMovie(savedMovie);
-        console.log("savedMovie", savedMovie);
+        // console.log("savedMovie", savedMovie);
         return savedMovie;
     }
 

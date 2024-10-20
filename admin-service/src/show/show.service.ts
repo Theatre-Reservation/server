@@ -46,13 +46,11 @@ export class ShowsService {
   }
 
   // Retrieve all shows by Theatre
-async getShowByTheatre(theatre: string, startDate: string, endDate: string): Promise<Show[]> {
+  async getShowByTheatre(theatre: string, startDate: string, endDate: string): Promise<Show[]> {
     // Convert the startDate and endDate to Date objects
     const start = new Date(new Date(startDate).setUTCHours(0, 0, 0, 0));
     const end = new Date(new Date(endDate).setUTCHours(23, 59, 59, 999));
 
-    console.log('Start Date: ', start);
-    console.log('End Date: ', end);
     // Find shows that match the theater and whose schedules fall within the date range
     const shows = await this.showModel.find({
         theater: theatre,
@@ -62,15 +60,11 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
         }
     }).exec();
 
-    console.log('Shows: ', shows);
-
     if (!shows || shows.length === 0) {
         throw new NotFoundException(`No shows found for Theatre ${theatre} in the specified date range`);
     }
-
     return shows;
-}
-
+  }
 
   // retrieve a single show by movie name
   async getShowByMovie(movie: string): Promise<Show[]> {
@@ -140,9 +134,7 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
         throw new NotFoundException(`Show with ID ${showId} not found`);
     }
 
-    // Check if the discount is expired
-    console.log(discountData.expiry < new Date())
-        // Check if the discount expiry date is provided
+    // Check if the discount expiry date is provided
     if (discountData.expiry) {
         const expiryDate = new Date(discountData.expiry); // Convert expiry to Date object
         const currentDate = new Date(); // Get the current date
@@ -153,8 +145,8 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
             throw new BadRequestException(`Cannot apply discount; current discount has expired.`);
         }
     }
-    console.log("percentage", discountData.percentage);
 
+    // Apply the discount
     let discountPrice = 0;
     if (discountData.percentage) {
             show.discountPercentage = discountData.percentage;
@@ -171,25 +163,24 @@ async getShowByTheatre(theatre: string, startDate: string, endDate: string): Pro
         throw new BadRequestException('Discount amount or percentage must be provided');
     }
 
-        // Set the discount expiry date if provided
+    // Set the discount expiry date if provided
     if (discountData.expiry) {
         show.discountExpiry = new Date(discountData.expiry); // Ensure it's a Date object
     } else {
         show.discountExpiry = undefined; // Clear expiry if not provided
     }
+
+    // Websocket: Notify all clients that a discount was applied
     this.showGateway.notifyShowDiscount(show);
-    console.log(show)
         return show;
     }
 
-     catch (error) {
-        console.error('Error applying discount:', error); // Log the error for debugging
-        if (error instanceof NotFoundException || error instanceof BadRequestException) {
+    catch (error) {
+      if (error instanceof NotFoundException || error instanceof BadRequestException) {
             throw error; // Rethrow known exceptions
-        } else {
+      } else {
             throw new InternalServerErrorException('Failed to apply discount');
-        }
-  }
-
+      }
+    }
 }
 
