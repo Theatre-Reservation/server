@@ -8,6 +8,7 @@ import {
   Body,
   NotFoundException,
   Query,
+  BadRequestException,
   // Query,
 } from '@nestjs/common';
 import { ShowsService } from './show.service';
@@ -45,49 +46,57 @@ export class ShowsController {
   // }
 
   // retrieve a single show by movie name
-  @Get(':movie')
-  async getShowByMovie(@Param('movie') movie: string): Promise<Show[]> {
-    const show = await this.showsService.getShowByMovie(movie);
+  // @Get(':movie')
+  // async getShowByMovie(@Param('movie') movie: string): Promise<Show[]> {
+  //   const show = await this.showsService.getShowByMovie(movie);
+  //   if (!show) {
+  //     throw new NotFoundException(`Show with movie ${movie} not found`);
+  //   }
+  //   return show;
+  // }
+
+  // Retrieve all shows based on Theatre and movie names
+  @Get('show')
+  async getShowByTheatreAndMovie(
+    @Query('theater') theater: string,
+    @Query('movie') movie: string,
+  ): Promise<Show[]> {
+    const show = await this.showsService.getShowByTheatreAndMovie(theater, movie);
     if (!show) {
-      throw new NotFoundException(`Show with movie ${movie} not found`);
+      throw new NotFoundException(
+        `Show with Theatre ${theater} and Movie ${movie} not found`,
+      );
     }
     return show;
   }
 
   // Retrieve all shows by Theatre
-  @Get('admin/theater')
-  async getShowByTheatre(@Query('theater') theater: string): Promise<Show[]> {
-    const show = await this.showsService.getShowByTheatre(theater);
-    if (!show) {
-      throw new NotFoundException(`Show with Theatre ${theater} not found`);
+@Get('admin/theater')
+async getShowByTheatre(
+    @Query('theater') theater: string,
+    @Query('startDate') startDate: string,
+    @Query('endDate') endDate: string
+): Promise<Show[]> {
+    if (!theater) {
+        throw new BadRequestException('Theater is required.');
     }
-    return show;
+    if (!startDate || !endDate) {
+        throw new BadRequestException('Start date and end date are required.');
+    }
+
+    const shows = await this.showsService.getShowByTheatre(theater, startDate, endDate);
+    if (!shows || shows.length === 0) {
+        throw new NotFoundException(`No shows found for Theatre ${theater} between ${startDate} and ${endDate}`);
+    }
+
+    return shows;
+}
+
+
+  @Post(':id/apply-discount')
+  async applyDiscount(@Param('id') id: string, @Body() discountData: { percentage?: number; amount?: number; expiry?: Date  }): Promise<Show> {
+      return this.showsService.applyDiscount(id, discountData);
   }
-
-  // Retrieve all revenue by Theatre
-  @Get('admin/revenue')
-  async getRevenueByTheatre(@Query('theater') theater: string): Promise<number> {
-    const show = await this.showsService.getRevenueByTheatre(theater);
-    console.log(show);
-    return show;
-  }
-
-  // Retrieve all booking by Theatre
-  @Get('admin/booking')
-  async getBookingByTheatre(@Query('theater') theater: string): Promise<number> {
-    const booking = await this.showsService.getBookingByTheatre(theater);
-    console.log(booking);
-    return booking;
-  }
-
-  // Retrieve all mail count by show
-  // @Get('admin/user')
-  // async getUsersByShow(@Query('show') show: string): Promise<number> {
-  //   const mail = await this.showsService.getMailCountByMovie(show);
-  //   console.log(mail);
-  //   return mail;
-  // }
-
 
   // Update a show by ID
   @Patch(':id')

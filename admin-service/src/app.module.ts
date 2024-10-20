@@ -7,12 +7,13 @@ import { ReportModule } from './report/report.module';
 import { ReservationModule } from './reservation/reservation.module';
 import { MovieModule } from './movie/movie.module';
 import { EventModule } from './event/event.module';
+import { TransactionModule } from './transaction/transaction.module';
 import config from './config/keys';
 
 @Module({
 imports: [MongooseModule.forRoot(config.mongoURI,{
     autoCreate: true
-    }), ShowModule, ReportModule, ReservationModule, MovieModule, EventModule],  
+    }), ShowModule, ReportModule, ReservationModule, MovieModule, EventModule, TransactionModule],  
   controllers: [AppController],
   providers: [AppService],
 })
