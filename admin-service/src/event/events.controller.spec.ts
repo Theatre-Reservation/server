@@ -10,28 +10,7 @@ describe('EventController', () => {
     let app: INestApplication;
     let eventService: EventService;
 
-    const mockEvents: Event[] = [
-        // {
-        //     id: '1',
-        //     title: 'Tech Conference',
-        //     description: 'A conference about the latest in tech',
-        //     date: new Date(),
-        //     location: 'San Francisco',
-        //     attendees: 100,
-        //     price: 50,
-        //     discount: 0,
-        // },
-        // {
-        //     id: '2',
-        //     title: 'Music Festival',
-        //     description: 'A festival with live music and performances',
-        //     date: new Date(),
-        //     location: 'New York',
-        //     attendees: 300,
-        //     price: 80,
-        //     discount: 0,
-        // },
-    ];
+    const mockEvents: Event[] = [    ];
 
     const mockEventService = {
         getAllEvents: jest.fn().mockResolvedValue(mockEvents),
