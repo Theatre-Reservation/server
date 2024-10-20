@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, NotFound
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateEventDto } from './dto/event.dto';
-import { Event, EventDocument } from 'src/db/event.model';
+import { Event, EventDocument } from '../db/event.model';
 import { MovieGateway } from '../movie/movie.gateway';
 
 

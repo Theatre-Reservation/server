@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateMovieDto } from './dto/movie.dto';
-import { Movie, MovieDocument } from 'src/db/movie.model';
+import { Movie, MovieDocument } from '../db/movie.model';
 import { MovieGateway } from './movie.gateway';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class MovieService {
         const savedMovie = await createdMovie.save();
         // Notify all clients that a new movie was added
         this.movieGateway.notifyNewMovie(savedMovie);
-        console.log("savedMovie", savedMovie);
+        // console.log("savedMovie", savedMovie);
         return savedMovie;
     }
 
