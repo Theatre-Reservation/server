@@ -1,4 +1,3 @@
-
 import { Test, TestingModule } from '@nestjs/testing';
 import { TransactionService } from './transaction.service';
 import { getModelToken } from '@nestjs/mongoose';
@@ -7,20 +6,18 @@ import { EventPayment } from './eventpayment.schema';
 
 // Mock Transaction and EventPayment models
 const mockTransactionModel = {
-  create: jest.fn(),
   save: jest.fn(),
   find: jest.fn(),
   exec: jest.fn(),
 };
 
 const mockEventPaymentModel = {
-  create: jest.fn(),
   save: jest.fn(),
   find: jest.fn(),
   exec: jest.fn(),
 };
 
-describe('TransactionService (Unit)', () => {
+describe('TransactionService (Integration)', () => {
   let service: TransactionService;
 
   beforeEach(async () => {
@@ -29,11 +26,23 @@ describe('TransactionService (Unit)', () => {
         TransactionService,
         {
           provide: getModelToken(Transaction.name),
-          useValue: mockTransactionModel,
+          useValue: {
+            ...mockTransactionModel,
+            constructor: jest.fn().mockImplementation((data) => ({
+              ...data,
+              save: mockTransactionModel.save,
+            })),
+          },
         },
         {
           provide: getModelToken(EventPayment.name),
-          useValue: mockEventPaymentModel,
+          useValue: {
+            ...mockEventPaymentModel,
+            constructor: jest.fn().mockImplementation((data) => ({
+              ...data,
+              save: mockEventPaymentModel.save,
+            })),
+          },
         },
       ],
     }).compile();
@@ -45,7 +54,7 @@ describe('TransactionService (Unit)', () => {
     jest.clearAllMocks(); // Clear mocks after each test
   });
 
-  
+ 
 
   // Test for fetching all movie transactions
   it('should return all movie transactions', async () => {
@@ -55,7 +64,7 @@ describe('TransactionService (Unit)', () => {
     ];
 
     // Mock the find method to return the transactions
-    jest.spyOn(mockTransactionModel, 'find').mockReturnValueOnce({
+    mockTransactionModel.find.mockReturnValueOnce({
       exec: jest.fn().mockResolvedValueOnce(transactions),
     });
 
@@ -64,8 +73,7 @@ describe('TransactionService (Unit)', () => {
     expect(mockTransactionModel.find).toHaveBeenCalled();
   });
 
-  
-  
+ 
 
   // Test for fetching all event transactions
   it('should return all event payment transactions', async () => {
@@ -75,7 +83,7 @@ describe('TransactionService (Unit)', () => {
     ];
 
     // Mock the find method to return the event payments
-    jest.spyOn(mockEventPaymentModel, 'find').mockReturnValueOnce({
+    mockEventPaymentModel.find.mockReturnValueOnce({
       exec: jest.fn().mockResolvedValueOnce(eventPayments),
     });
 
