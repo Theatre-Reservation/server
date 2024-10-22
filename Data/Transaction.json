@@ -1,0 +1,656 @@
+[
+  {
+    "_id": "66f99133c06a6ce417e67347",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "B6"
+    ],
+    "createdAt": "2024-01-29T17:41:07.586Z",
+    "createdAtDate": "2024-01-29T17:41:07.586Z",
+    "__v": 0
+  },
+  {
+    "_id": "66f9af0aebf134f9d517b848",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8bd",
+    "movie": "Furiosa: A Mad Max Saga",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3000,
+    "selectedSeats": [
+      "A7",
+      "A8"
+    ],
+    "createdAt": "2024-02-29T19:48:26.633Z",
+    "createdAtDate": "2024-02-29T19:48:26.633Z",
+    "__v": 0
+  },
+  {
+    "_id": "66fa35981eeffab1fe21437e",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "B8"
+    ],
+    "createdAt": "2024-03-30T05:22:32.809Z",
+    "createdAtDate": "2024-03-30T05:22:32.809Z",
+    "__v": 0
+  },
+  {
+    "_id": "66fe41ef29e8ee454f886757",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 7200,
+    "selectedSeats": [
+      "C1",
+      "C6",
+      "C7",
+      "D10"
+    ],
+    "createdAt": "2024-04-03T07:04:15.146Z",
+    "createdAtDate": "2024-04-03T07:04:15.146Z",
+    "__v": 0
+  },
+  {
+    "_id": "66fec1c2e6b62d106e1a8d15",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "C5"
+    ],
+    "createdAt": "2024-05-03T16:09:38.453Z",
+    "createdAtDate": "2024-05-03T16:09:38.453Z",
+    "__v": 0
+  },
+  {
+    "_id": "6702219c645778ef19b64b6b",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "H3"
+    ],
+    "createdAt": "2024-10-06T05:35:24.348Z",
+    "createdAtDate": "2024-10-06T05:35:24.348Z",
+    "__v": 0
+  },
+  {
+    "_id": "670229fa645778ef19b64b6f",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "C4"
+    ],
+    "createdAt": "2024-10-06T06:11:06.791Z",
+    "createdAtDate": "2024-10-06T06:11:06.791Z",
+    "__v": 0
+  },
+  {
+    "_id": "670241ee8e3e4baf62d2a112",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 5400,
+    "selectedSeats": [
+      "B4",
+      "B3",
+      "B2"
+    ],
+    "createdAt": "2024-10-06T07:53:18.459Z",
+    "createdAtDate": "2024-10-06T07:53:18.459Z",
+    "__v": 0
+  },
+  {
+    "_id": "670244198e3e4baf62d2a114",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3600,
+    "selectedSeats": [
+      "C5",
+      "D5"
+    ],
+    "createdAt": "2024-10-06T08:02:33.467Z",
+    "createdAtDate": "2024-10-06T08:02:33.467Z",
+    "__v": 0
+  },
+  {
+    "_id": "67025db18e3e4baf62d2a116",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3600,
+    "selectedSeats": [
+      "E1",
+      "E9"
+    ],
+    "createdAt": "2024-10-06T09:51:45.360Z",
+    "createdAtDate": "2024-10-06T09:51:45.360Z",
+    "__v": 0
+  },
+  {
+    "_id": "6702763be557fe605e8bc16d",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "F5"
+    ],
+    "createdAt": "2024-10-06T11:36:27.645Z",
+    "createdAtDate": "2024-10-06T11:36:27.645Z",
+    "__v": 0
+  },
+  {
+    "_id": "67027875e557fe605e8bc16f",
+    "userId": "user_id_here",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3600,
+    "selectedSeats": [
+      "C4",
+      "F9"
+    ],
+    "createdAt": "2024-10-06T11:45:57.701Z",
+    "createdAtDate": "2024-10-06T11:45:57.701Z",
+    "__v": 0
+  },
+  {
+    "_id": "6705872950387291781de3c0",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "H7"
+    ],
+    "createdAt": "2024-10-08T19:25:29.804Z",
+    "createdAtDate": "2024-10-08T19:25:29.804Z",
+    "__v": 0
+  },
+  {
+    "_id": "67062698e89878371695afde",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8b9",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3000,
+    "selectedSeats": [
+      "H5",
+      "H4"
+    ],
+    "createdAt": "2024-10-09T06:45:44.446Z",
+    "createdAtDate": "2024-10-09T06:45:44.446Z",
+    "__v": 0
+  },
+  {
+    "_id": "67062b46e89878371695afe0",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 3200,
+    "selectedSeats": [
+      "A1",
+      "A2"
+    ],
+    "createdAt": "2024-10-09T07:05:42.048Z",
+    "createdAtDate": "2024-10-09T07:05:42.048Z",
+    "__v": 0
+  },
+  {
+    "_id": "6706d7dc4aa296906335dee6",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 4800,
+    "selectedSeats": [
+      "A3",
+      "A4",
+      "A5"
+    ],
+    "createdAt": "2024-08-09T19:22:04.807Z",
+    "createdAtDate": "2024-08-09T19:22:04.807Z",
+    "__v": 0
+  },
+  {
+    "_id": "6706dcacdf3ab857f52882b6",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 4800,
+    "selectedSeats": [
+      "A8",
+      "A9",
+      "A10"
+    ],
+    "createdAt": "2024-10-09T19:42:36.385Z",
+    "createdAtDate": "2024-10-09T19:42:36.385Z",
+    "__v": 0
+  },
+  {
+    "_id": "67076d4aa69c2e9672ea573a",
+    "userId": "66fe6373f963135dd6e3aba9",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "B1"
+    ],
+    "createdAt": "2024-10-10T05:59:38.528Z",
+    "createdAtDate": "2024-10-10T05:59:38.529Z",
+    "__v": 0
+  },
+  {
+    "_id": "67077432f3c9eed217c06ede",
+    "userId": "66fe6373f963135dd6e3aba9",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "B1"
+    ],
+    "createdAt": "2024-10-10T06:29:06.515Z",
+    "createdAtDate": "2024-10-10T06:29:06.516Z",
+    "__v": 0
+  },
+  {
+    "_id": "6707774f67c1085ba31584b4",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "A9"
+    ],
+    "createdAt": "2024-10-10T06:42:23.052Z",
+    "createdAtDate": "2024-10-10T06:42:23.052Z",
+    "__v": 0
+  },
+  {
+    "_id": "670785c3f3c9eed217c06ee0",
+    "userId": "6707858ce771d4e87c617dde",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "C8"
+    ],
+    "createdAt": "2024-10-10T07:44:03.479Z",
+    "createdAtDate": "2024-10-10T07:44:03.479Z",
+    "__v": 0
+  },
+  {
+    "_id": "6707874df3c9eed217c06ee2",
+    "userId": "6707858ce771d4e87c617dde",
+    "showId": "66cf6bfa000c54c27804b8c0",
+    "movie": "Inside Out 2",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "F8"
+    ],
+    "createdAt": "2024-10-10T07:50:37.537Z",
+    "createdAtDate": "2024-10-10T07:50:37.537Z",
+    "__v": 0
+  },
+  {
+    "_id": "67078c95f3c9eed217c06ee4",
+    "userId": "66fe6373f963135dd6e3aba9",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1800,
+    "selectedSeats": [
+      "C2"
+    ],
+    "createdAt": "2024-10-10T08:13:09.494Z",
+    "createdAtDate": "2024-10-10T08:13:09.494Z",
+    "__v": 0
+  },
+  {
+    "_id": "67079c9f409f67ac9377080e",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 3200,
+    "selectedSeats": [
+      "H1",
+      "H2"
+    ],
+    "createdAt": "2024-10-10T09:21:35.549Z",
+    "createdAtDate": "2024-10-10T09:21:35.549Z",
+    "__v": 0
+  },
+  {
+    "_id": "67079cf4409f67ac93770810",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c2",
+    "movie": "Inside Out 2",
+    "theatre": "Scope Cinemas - Colombo City Centre",
+    "totalAmount": 2800,
+    "selectedSeats": [
+      "A1",
+      "A2"
+    ],
+    "createdAt": "2024-10-10T09:23:00.551Z",
+    "createdAtDate": "2024-10-10T09:23:00.551Z",
+    "__v": 0
+  },
+  {
+    "_id": "6707a21b409f67ac93770812",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bc",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Scope Cinemas - Colombo City Centre",
+    "totalAmount": 4200,
+    "selectedSeats": [
+      "A1",
+      "A2",
+      "B2"
+    ],
+    "createdAt": "2024-10-10T09:44:59.937Z",
+    "createdAtDate": "2024-10-10T09:44:59.937Z",
+    "__v": 0
+  },
+  {
+    "_id": "67123148572f5cdc2f3631c6",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c0",
+    "movie": "Inside Out 2",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 3000,
+    "selectedSeats": [
+      "A8",
+      "A9"
+    ],
+    "createdAt": "2024-10-18T09:58:32.829Z",
+    "createdAtDate": "2024-10-18T09:58:32.829Z",
+    "__v": 0
+  },
+  {
+    "_id": "6712318d572f5cdc2f3631c8",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c1",
+    "movie": "Inside Out 2",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1600,
+    "selectedSeats": [
+      "C3"
+    ],
+    "createdAt": "2024-10-18T09:59:41.842Z",
+    "createdAtDate": "2024-10-18T09:59:41.842Z",
+    "__v": 0
+  },
+  {
+    "_id": "671249efe4cf79bb014e1830",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c0",
+    "movie": "Inside Out 2",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 2040,
+    "selectedSeats": [
+      "C8",
+      "C9"
+    ],
+    "createdAt": "2024-10-18T11:43:43.843Z",
+    "createdAtDate": "2024-10-18T11:43:43.843Z",
+    "__v": 0
+  },
+  {
+    "_id": "67124a7fe4cf79bb014e1832",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c1",
+    "movie": "Inside Out 2",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 640,
+    "selectedSeats": [
+      "H6"
+    ],
+    "createdAt": "2024-10-18T11:46:07.839Z",
+    "createdAtDate": "2024-10-18T11:46:07.839Z",
+    "__v": 0
+  },
+  {
+    "_id": "67124b1ce4cf79bb014e1834",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1600,
+    "selectedSeats": [
+      "D9"
+    ],
+    "createdAt": "2024-10-18T11:48:44.856Z",
+    "createdAtDate": "2024-10-18T11:48:44.856Z",
+    "__v": 0
+  },
+  {
+    "_id": "67124ccce4cf79bb014e1836",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c1",
+    "movie": "Inside Out 2",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 2080,
+    "selectedSeats": [
+      "A7",
+      "A8"
+    ],
+    "createdAt": "2024-10-18T11:55:56.836Z",
+    "createdAtDate": "2024-10-18T11:55:56.836Z",
+    "__v": 0
+  },
+  {
+    "_id": "67124d74e4cf79bb014e1838",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1600,
+    "selectedSeats": [
+      "H8"
+    ],
+    "createdAt": "2024-10-18T11:58:44.835Z",
+    "createdAtDate": "2024-10-18T11:58:44.835Z",
+    "__v": 0
+  },
+  {
+    "_id": "671278646f509d63db2a07f0",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c1",
+    "movie": "Inside Out 2",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1232,
+    "selectedSeats": [
+      "H7"
+    ],
+    "createdAt": "2024-10-18T15:01:56.813Z",
+    "createdAtDate": "2024-10-18T15:01:56.813Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713a16b5e1eb99abb5dc059",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1600,
+    "selectedSeats": [
+      "H9"
+    ],
+    "createdAt": "2024-10-19T12:09:15.443Z",
+    "createdAtDate": "2024-10-19T12:09:15.444Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713a2de5e1eb99abb5dc05b",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1317,
+    "selectedSeats": [
+      "H10"
+    ],
+    "createdAt": "2024-10-19T12:15:26.314Z",
+    "createdAtDate": "2024-10-19T12:15:26.314Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713afb85e1eb99abb5dc05f",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c0",
+    "movie": "Inside Out 2",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "H4"
+    ],
+    "createdAt": "2024-10-19T13:10:16.386Z",
+    "createdAtDate": "2024-10-19T13:10:16.386Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713c1e75e1eb99abb5dc064",
+    "userId": "66fe6373f963135dd6e3aba9",
+    "showId": "66cf6bfa000c54c27804b8bc",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Scope Cinemas - Colombo City Centre",
+    "totalAmount": 1400,
+    "selectedSeats": [
+      "H6"
+    ],
+    "createdAt": "2024-10-19T14:27:51.343Z",
+    "createdAtDate": "2024-10-19T14:27:51.343Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713cdc65e1eb99abb5dc066",
+    "userId": "6713cd3ca3143fda02df719d",
+    "showId": "66cf6bfa000c54c27804b8c0",
+    "movie": "Inside Out 2",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1500,
+    "selectedSeats": [
+      "D4"
+    ],
+    "createdAt": "2024-10-19T15:18:30.404Z",
+    "createdAtDate": "2024-10-19T15:18:30.404Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713ce865e1eb99abb5dc068",
+    "userId": "6713cd3ca3143fda02df719d",
+    "showId": "66cf6bfa000c54c27804b8c1",
+    "movie": "Inside Out 2",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1450,
+    "selectedSeats": [
+      "H3"
+    ],
+    "createdAt": "2024-10-19T15:21:42.366Z",
+    "createdAtDate": "2024-10-19T15:21:42.366Z",
+    "__v": 0
+  },
+  {
+    "_id": "6713e2fa5e1eb99abb5dc06c",
+    "userId": "6713e23fa3143fda02df71c1",
+    "showId": "66cf6bfa000c54c27804b8bc",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Scope Cinemas - Colombo City Centre",
+    "totalAmount": 1400,
+    "selectedSeats": [
+      "E9"
+    ],
+    "createdAt": "2024-10-19T16:48:58.519Z",
+    "createdAtDate": "2024-10-19T16:48:58.519Z",
+    "__v": 0
+  },
+  {
+    "_id": "6714ad905e1eb99abb5dc06e",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 1600,
+    "selectedSeats": [
+      "F9"
+    ],
+    "createdAt": "2024-10-20T07:13:20.514Z",
+    "createdAtDate": "2024-10-20T07:13:20.515Z",
+    "__v": 0
+  },
+  {
+    "_id": "6714f82b5e1eb99abb5dc070",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8c2",
+    "movie": "Inside Out 2",
+    "theatre": "Scope Cinemas - Colombo City Centre",
+    "totalAmount": 2800,
+    "selectedSeats": [
+      "C9",
+      "C8"
+    ],
+    "createdAt": "2024-10-20T12:31:39.471Z",
+    "createdAtDate": "2024-10-20T12:31:39.472Z",
+    "__v": 0
+  },
+  {
+    "_id": "6714f9855e1eb99abb5dc072",
+    "userId": "67025cdddd5a082e10c6c394",
+    "showId": "66cf6bfa000c54c27804b8bb",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Liberty Cinema - Colombo",
+    "totalAmount": 3200,
+    "selectedSeats": [
+      "C4",
+      "C5"
+    ],
+    "createdAt": "2024-10-20T12:37:25.287Z",
+    "createdAtDate": "2024-10-20T12:37:25.287Z",
+    "__v": 0
+  },
+  {
+    "_id": "671504835e1eb99abb5dc074",
+    "userId": "6713cd3ca3143fda02df719d",
+    "showId": "66cf6bfa000c54c27804b8ba",
+    "movie": "Deadpool & Wolverine",
+    "theatre": "Majestic City - Colombo",
+    "totalAmount": 1655,
+    "selectedSeats": [
+      "H10"
+    ],
+    "createdAt": "2024-10-20T13:24:19.285Z",
+    "createdAtDate": "2024-10-20T13:24:19.286Z",
+    "__v": 0
+  }
+]

@@ -12,20 +12,23 @@
     ],
     "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FDeadpoolAndWolwarine.webp?alt=media&token=a01f77eb-17da-4cb3-8f59-d69d42264b60",
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FDeadpoolAndWolwarine_Cover.webp?alt=media&token=c33f49a3-79af-4dda-97c4-81d143b62424",
-    "released_date": "2024-05-03T00:00:00.000Z",
+    "released_date": "2024-05-10T00:00:00.000Z",
     "runtime": "2 hrs 15 mins",
     "schedules": [
-        {
-            "date": "2024-05-03T00:00:00.000Z",
-            "time": "07:00 PM",
-            "price": "LKR 1500"
-        },
-        {
-            "date": "2024-05-03T00:00:00.000Z",
-            "time": "09:30 PM",
-            "price": "LKR 1500"
-        }
-    ]
+      {
+        "date": "2024-05-03T00:00:00.000Z",
+        "time": "07:00 PM",
+        "price": "LKR 1500",
+        "_id": "66e68db8ee805592efd7f6b7"
+      },
+      {
+        "date": "2024-05-03T00:00:00.000Z",
+        "time": "09:30 PM",
+        "price": "LKR 1500",
+        "_id": "66e68db8ee805592efd7f6b8"
+      }
+    ],
+    "admin_id": "64e1f26b2a91d130d5a14e3f"
   },
   {
     "_id": "66cf2475000c54c27804b8b5",
@@ -40,20 +43,23 @@
     ],
     "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FTwisters.jpg?alt=media&token=6d5798bd-3b1c-4090-bb7d-7e8d758742a4",
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FTwisters_Cover.jpeg?alt=media&token=88bff462-4823-4a54-a18b-5887d7100d2d",
-    "released_date": "2024-04-12T00:00:00.000Z",
+    "released_date": "2024-04-18T00:00:00.000Z",
     "runtime": "2 hrs 5 mins",
     "schedules": [
-        {
-            "date": "2024-04-12T00:00:00.000Z",
-            "time": "07:00 PM",
-            "price": "LKR 1500"
-        },
-        {
-            "date": "2024-04-12T00:00:00.000Z",
-            "time": "09:30 PM",
-            "price": "LKR 1500"
-        }
-    ]
+      {
+        "date": "2024-04-12T00:00:00.000Z",
+        "time": "07:00 PM",
+        "price": "LKR 1500",
+        "_id": "66e68e88ee805592efd7f6ce"
+      },
+      {
+        "date": "2024-04-12T00:00:00.000Z",
+        "time": "09:30 PM",
+        "price": "LKR 1500",
+        "_id": "66e68e88ee805592efd7f6cf"
+      }
+    ],
+    "admin_id": "64e1f26b2a91d130d5a14e3f"
   },
   {
     "_id": "66cf2475000c54c27804b8b3",
@@ -71,16 +77,12 @@
     "released_date": "2024-11-22T00:00:00.000Z",
     "runtime": "2 hrs 20 mins",
     "schedules": [
-        {
-            "date": "2024-11-22T00:00:00.000Z",
-            "time": "07:00 PM",
-            "price": "LKR 1500"
-        },
-        {
-            "date": "2024-11-22T00:00:00.000Z",
-            "time": "09:30 PM",
-            "price": "LKR 1500"
-        }
+      {
+        "date": "2024-11-22T00:00:00.000Z",
+        "time": "07:00 PM",
+        "price": "LKR 1500",
+        "_id": "66e68ecbee805592efd7f6f0"
+      }
     ]
   },
   {
@@ -98,7 +100,15 @@
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FFuriosa_AMadMax_Cover.jpg?alt=media&token=1f266d91-8139-4e72-bbe8-6c9a0e9b8396",
     "released_date": "2024-06-21T00:00:00.000Z",
     "runtime": "2 hrs 10 mins",
-    "schedules": []
+    "admin_id": "64e1f26b2a91d130d5a14e3f",
+    "schedules": [
+      {
+        "date": "2024-09-16T00:00:00.000Z",
+        "time": "13:03",
+        "price": "5000",
+        "_id": "66e7df6c94fea53e20d2907a"
+      }
+    ]
   },
   {
     "_id": "66cf2475000c54c27804b8b0",
@@ -115,6 +125,7 @@
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FInsideOut2._Cover.webp?alt=media&token=48ce45b0-3034-4873-a906-566952dd0f56",
     "released_date": "2024-07-19T00:00:00.000Z",
     "runtime": "1 hr 45 mins",
+    "admin_id": "64e1f26b2a91d130d5a14e3f",
     "schedules": []
   },
   {
@@ -131,8 +142,7 @@
     "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FDune_part2.webp?alt=media&token=deef82ec-567f-484b-94d2-35777e54368a",
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FDune_part2_Cover.webp?alt=media&token=30cb5726-eaa3-41e9-8985-7035bdbfc65f",
     "released_date": "2024-10-18T00:00:00.000Z",
-    "runtime": "2 hrs 30 mins",
-    "schedules": []
+    "runtime": "2 hrs 30 mins"
   },
   {
     "_id": "66cf2475000c54c27804b8b4",
@@ -148,8 +158,7 @@
     "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FA%20Quiet%20Place_Day%20One.webp?alt=media&token=c979886d-0092-4e84-98e0-6cce8e767435",
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FA%20Quiet%20Place_Day%20One_Cover.webp?alt=media&token=02073edd-8f4a-416f-9fa8-783ecd0ec0bd",
     "released_date": "2024-03-15T00:00:00.000Z",
-    "runtime": "1 hr 40 mins",
-    "schedules": []
+    "runtime": "1 hr 40 mins"
   },
   {
     "_id": "66cf2475000c54c27804b8b6",
@@ -166,6 +175,22 @@
     "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/Movies%2FDespicable%20Me%204_cover.jpeg?alt=media&token=94b34e90-cef5-41ca-9e6f-1ad864b46cea",
     "released_date": "2024-07-05T00:00:00.000Z",
     "runtime": "1 hr 35 mins",
+    "admin_id": "64e1f26b2a91d130d5a14e3f",
     "schedules": []
+  },
+  {
+    "_id": "671310e7307aa1ea25367b7d",
+    "title": "Amila",
+    "language": "English",
+    "description": "ss",
+    "main_genre": "Comady",
+    "sub_genres": [
+      "Romantic"
+    ],
+    "poster_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/images%2FUXploreHome.PNG?alt=media&token=09c840bf-e9f3-4726-a0cb-b92a9a8a1615",
+    "cover_path": "https://firebasestorage.googleapis.com/v0/b/theatre-reservation-syst-64103.appspot.com/o/images%2FWhatsApp%20Image%202024-10-08%20at%2012.50.56_fc4f4d5e.jpg?alt=media&token=e4fe9bd3-3eb1-4d59-9001-66660583cab4",
+    "released_date": "2024-10-24T00:00:00.000Z",
+    "runtime": "2 hrs 10 mins",
+    "__v": 0
   }
 ]
