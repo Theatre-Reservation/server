@@ -1,5 +1,6 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 import { Types } from 'mongoose';
+import sanitizeHtml from 'sanitize-html';
 
 export class CreateReviewDto {
   @IsNotEmpty()
@@ -15,4 +16,9 @@ export class CreateReviewDto {
   @IsNotEmpty()
   @IsString()
   comment: string;
+
+  sanitizeInput() {
+    this.userName = sanitizeHtml(this.userName);
+    this.comment = sanitizeHtml(this.comment);
+  }
 }
